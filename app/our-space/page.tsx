@@ -86,14 +86,54 @@ export default function OurSpacePage() {
         </div>
       </section>
 
-      {/* ── GALLERY ── */}
+      {/* ── FACILITY DESCRIPTION + GALLERY ── */}
       <section
         className="page-px"
-        style={{ backgroundColor: "var(--bg)", paddingTop: "72px", paddingBottom: "72px", width: "100%", display: "flex", flexDirection: "column", gap: "36px" }}
+        style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "64px" }}
       >
-        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-          Our facility
-        </p>
+        {/* Description block */}
+        <div className="ourspace-facility-row">
+          {/* Left — heading + copy */}
+          <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
+            <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+              Built for fencing.<br />Nothing else.
+            </p>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0, maxWidth: "520px" }}>
+              CFA isn&apos;t a community centre or a borrowed gym. Our Wyecroft Rd location was purpose-built as a fencing club — eighteen full-length pistes, proper sprung flooring, and professional-grade electronic scoring systems on every strip.
+            </p>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0, maxWidth: "520px" }}>
+              We&apos;re open seven days a week across two Oakville locations, with something running every evening and all weekend — beginner courses, recreational bouts, and elite competitive training all under the same roof.
+            </p>
+          </div>
+
+          {/* Right — facility highlights */}
+          <div style={{ flex: "0 0 auto", width: "300px", display: "flex", flexDirection: "column", gap: "0" }}>
+            {[
+              { icon: "⚡", label: "Electronic scoring on every piste" },
+              { icon: "🏅", label: "18 full-length competition strips" },
+              { icon: "👕", label: "Loaner gear for beginners" },
+              { icon: "📅", label: "Open 7 days — evenings & weekends" },
+              { icon: "📍", label: "Two Oakville locations" },
+              { icon: "🏆", label: "Home to provincial-level competitors" },
+            ].map((item, i, arr) => (
+              <div
+                key={item.label}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "14px",
+                  padding: "16px 0",
+                  borderBottom: i < arr.length - 1 ? "1px solid var(--border)" : "none",
+                }}
+              >
+                <span style={{ fontSize: "18px", flexShrink: 0, width: "24px", textAlign: "center" }}>{item.icon}</span>
+                <span style={{ fontFamily: ss3, fontWeight: 600, fontSize: "15px", lineHeight: "22px", color: "var(--text)" }}>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Gallery */}
         <GalleryGrid items={GALLERY} />
       </section>
 
