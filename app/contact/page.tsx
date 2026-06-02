@@ -16,8 +16,8 @@ const LOCATIONS = [
     name: "Second location",
     address: "Now open in Oakville — full address coming soon.",
     hours: "Open 7 days — evenings & weekends",
-    mapsUrl: "https://www.google.com/maps/search/Oakville,+ON",
-    embedSrc: "https://maps.google.com/maps?q=Oakville,+ON&output=embed",
+    mapsUrl: "https://www.google.com/maps/dir//208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1",
+    embedSrc: "https://maps.google.com/maps?q=208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1&output=embed",
   },
 ];
 

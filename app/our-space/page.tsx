@@ -224,7 +224,7 @@ export default function OurSpacePage() {
         <div className="card-row">
           {[
             { name: "Wyecroft Rd", address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed", directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8" },
-            { name: "Second location", address: "Now open in Oakville — full address coming soon.", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=Oakville,+ON&output=embed", directionsUrl: "/contact" },
+            { name: "Second location", address: "Now open in Oakville — full address coming soon.", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1&output=embed", directionsUrl: "/contact" },
           ].map((loc) => (
             <div
               key={loc.name}
