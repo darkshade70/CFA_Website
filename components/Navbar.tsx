@@ -72,7 +72,7 @@ export default function Navbar() {
           {/* Mobile logo — compact icon version */}
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/cfamobilelogo.png" alt="Canadian Fencing Academy" style={{ height: "32px", width: "auto", display: "block" }} />
+            <img src="/cfamobilelogo.png" alt="Canadian Fencing Academy" style={{ height: "40px", width: "auto", display: "block" }} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <Link href="/register" className="btn-primary" style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "18px", padding: "10px 18px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
