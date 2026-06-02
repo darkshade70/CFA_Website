@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import GalleryGrid from "@/components/GalleryGrid";
 
 export const metadata: Metadata = { title: "Our Space" };
 
@@ -93,18 +94,7 @@ export default function OurSpacePage() {
         <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
           Our facility
         </p>
-        <div className="ourspace-bento">
-          {GALLERY.map((item, i) => (
-            <div key={i} style={{ overflow: "hidden", borderRadius: "6px", backgroundColor: "var(--surface)" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.img}
-                alt={item.alt}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
-          ))}
-        </div>
+        <GalleryGrid items={GALLERY} />
       </section>
 
       {/* ── TWO OAKVILLE LOCATIONS ── */}
