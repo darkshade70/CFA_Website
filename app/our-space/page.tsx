@@ -14,12 +14,12 @@ const STATS = [
 ];
 
 const GALLERY = [
-  { img: "/fencing2.webp", alt: "Eighteen full-length pistes" },
-  { img: "/fencing3.jpg",  alt: "Sprung maple floor" },
-  { img: "/fencing5.webp", alt: "Youth training session" },
-  { img: "/fencing6.webp", alt: "Coaching on the piste" },
-  { img: "/fencing7.avif", alt: "Competition bout" },
-  { img: "/fencing8.jpg",  alt: "The club space" },
+  { img: "/gym1.jpg",  alt: "Fencers training on the pistes" },
+  { img: "/gym8.jpg",  alt: "Training session with Canada flag" },
+  { img: "/gym4.jpg",  alt: "Coach working with a young fencer" },
+  { img: "/gym6.jpg",  alt: "Fencers in a bout" },
+  { img: "/gym7.jpg",  alt: "Podium at a CFA event" },
+  { img: "/gym3.jpg",  alt: "Coach with young fencers" },
 ];
 
 export default function OurSpacePage() {

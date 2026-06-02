@@ -11,40 +11,46 @@ const COACHES = [
     role: "President & head coach",
     bio: "Twenty-five years of fencing and fifteen building CFA into one of Ontario's largest clubs. Alice oversees every program and still coaches on the floor every week.",
     img: "/coach-alice.png",
+    imgPos: "center 15%",   // tall image — pull face up to match row
   },
   {
     name: "Brily Lepine",
     role: "Foil & historical coach",
     bio: "Fencing since the early '90s across foil, longsword and rapier. Brily leads our historical program and brings decades of teaching to every session.",
     img: "/coach-brily.png",
+    imgPos: "center top",   // face already near top — reference anchor
   },
   {
     name: "Kyle Foster",
     role: "Owner & veteran fencer",
     bio: "Active veteran competitor who runs the club operations and programming. Kyle brings decades of competitive experience to every class he leads.",
     img: "/coach-kyle.png",
+    imgPos: "center top",   // face already near top — reference anchor
   },
   {
     name: "Anna",
     role: "Coach",
     bio: "Dedicated coach with a passion for developing fencers at every level. Anna works across multiple programs and brings energy and precision to every session.",
     img: "/coach-anna.png",
+    imgPos: "center 30%",   // face sits lower in frame — shift image up
   },
   {
     name: "Brendon",
     role: "Coach",
     bio: "A skilled fencer and coach committed to helping athletes reach their potential. Brendon's technical approach and patience make him a favourite among students.",
     img: "/coach-brendon.png",
+    imgPos: "center 6%",    // slight upward nudge
   },
   {
     name: "Ethan",
     role: "Coach",
     bio: "Ethan combines competitive experience with a natural ability to teach. He works with youth and adult fencers alike, focusing on fundamentals and game sense.",
     img: "/coach-ethan.png",
+    imgPos: "center 33%",   // cap adds height — shift image up significantly
   },
 ];
 
-function CoachCard({ coach }: { coach: { name: string; role: string; bio: string; img: string } }) {
+function CoachCard({ coach }: { coach: { name: string; role: string; bio: string; img: string; imgPos: string } }) {
   return (
     <div
       style={{
@@ -59,7 +65,7 @@ function CoachCard({ coach }: { coach: { name: string; role: string; bio: string
       {/* Coach photo */}
       <div style={{ height: "340px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={coach.img} alt={coach.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }} />
+        <img src={coach.img} alt={coach.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: coach.imgPos, display: "block" }} />
       </div>
       {/* Card body */}
       <div style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "24px 24px 26px" }}>
@@ -103,11 +109,21 @@ export default function CoachesPage() {
         </p>
       </div>
 
+      {/* ── Group photo banner ── */}
+      <div style={{ width: "100%", height: "420px", overflow: "hidden", flexShrink: 0 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/coaches-group.jpg"
+          alt="The CFA coaching team"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
+        />
+      </div>
+
       {/* ── Coach grid — CSS grid: 3-col desktop, 1-col mobile ── */}
       <div
         data-node-id="1:1972"
         className="page-px"
-        style={{ backgroundColor: "var(--bg)", paddingTop: "24px", paddingBottom: "80px", width: "100%" }}
+        style={{ backgroundColor: "var(--bg)", paddingTop: "56px", paddingBottom: "80px", width: "100%" }}
       >
         <div className="coaches-grid">
           {COACHES.map((coach) => <CoachCard key={coach.name} coach={coach} />)}
