@@ -333,6 +333,14 @@ body {
 /* ── Coaches page grid ─────────────────────────────────────────────────────── */
 .coaches-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; }
 
+/* ── Beginners page ────────────────────────────────────────────────────────── */
+.beginners-expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  width: 100%;
+}
+
 /* ── Book a visit page ─────────────────────────────────────────────────────── */
 .visit-layout  { display: flex; gap: 48px; align-items: flex-start; width: 100%; }
 .visit-sidebar { width: 340px; flex-shrink: 0; }
@@ -504,6 +512,9 @@ body {
 
   /* Our Space: shorter gallery main on mobile */
   .space-gallery-main { height: 300px !important; }
+
+  /* Beginners: what to expect → single column */
+  .beginners-expect-grid { grid-template-columns: 1fr; gap: 32px; }
 
   /* Book a visit: stack form + sidebar on mobile */
   .visit-layout  { flex-direction: column; }

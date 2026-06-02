@@ -17,7 +17,6 @@ const clubLinks = [
   { label: "Coaches", href: "/coaches" },
   { label: "Our Space", href: "/our-space" },
   { label: "Contact", href: "/contact" },
-  { label: "Start Here", href: "/register" },
 ];
 
 export default function Navbar() {
@@ -33,15 +32,43 @@ export default function Navbar() {
         {/* ── Desktop nav bar ── */}
         <div
           className="hidden md:flex items-center justify-between"
-          style={{ padding: "26px 80px" }}
+          style={{ padding: "20px 80px" }}
         >
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/cfalogo.png" alt="Canadian Fencing Academy" style={{ height: "44px", width: "auto", display: "block" }} />
           </Link>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "36px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text-2)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px", fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px" }}>
+
+              {/* ── Beginners — highlighted top-of-funnel link ── */}
+              <Link
+                href="/beginners"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "8px 14px",
+                  borderRadius: "8px",
+                  backgroundColor: "rgba(228,0,43,0.1)",
+                  border: "1px solid rgba(228,0,43,0.25)",
+                  color: "var(--accent-text)",
+                  fontFamily: ss3,
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                  transition: "background-color 0.15s ease",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = "rgba(228,0,43,0.18)")}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = "rgba(228,0,43,0.1)")}
+              >
+                {/* Pulse dot */}
+                <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "var(--accent)", flexShrink: 0, display: "inline-block" }} />
+                Start Here
+              </Link>
+
               {/* Programs dropdown */}
               <div className="relative" onMouseEnter={() => setProgramsOpen(true)} onMouseLeave={() => setProgramsOpen(false)}>
                 <button className="nav-link flex items-center gap-1 cursor-pointer" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", background: "none", border: "none" }}>
@@ -49,6 +76,10 @@ export default function Navbar() {
                 </button>
                 {programsOpen && (
                   <div className="absolute top-full left-0 mt-2 rounded-xl overflow-hidden shadow-2xl border" style={{ backgroundColor: "var(--surface-2)", borderColor: "var(--border)", width: "200px" }}>
+                    {/* Beginners at top of dropdown too */}
+                    <Link href="/beginners" className="dropdown-item" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", color: "var(--accent-text)", textDecoration: "none", display: "block", padding: "14px 20px", borderBottom: "1px solid var(--border)" }}>
+                      ✦ Beginners
+                    </Link>
                     {programs.map((p) => (
                       <Link key={p.href} href={p.href} className="dropdown-item" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", color: "var(--text)", textDecoration: "none", display: "block", padding: "14px 20px" }}>
                         {p.name}
@@ -57,6 +88,7 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
+
               <Link href="/coaches" className="nav-link" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", textDecoration: "none" }}>Coaches</Link>
               <Link href="/our-space" className="nav-link" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", textDecoration: "none" }}>Our Space</Link>
               <Link href="/contact" className="nav-link" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", textDecoration: "none" }}>Contact</Link>
@@ -75,8 +107,8 @@ export default function Navbar() {
             <img src="/cfamobilelogo.png" alt="Canadian Fencing Academy" style={{ height: "40px", width: "auto", display: "block" }} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <Link href="/register" className="btn-primary" style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "18px", padding: "10px 18px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
-              Register Now →
+            <Link href="/beginners" className="btn-primary" style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "18px", padding: "10px 18px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
+              Start Here →
             </Link>
             <button onClick={() => setMobileOpen(true)} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: "5px", padding: "4px", flexShrink: 0 }}>
               <span style={{ display: "block", width: "22px", height: "2px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
@@ -106,11 +138,19 @@ export default function Navbar() {
           {/* Menu content */}
           <div style={{ padding: "10px 24px 26px", display: "flex", flexDirection: "column", gap: "40px", flex: 1 }}>
 
-            {/* Just starting CTA */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--text)", margin: 0 }}>Just starting?</p>
-              <Link href="/programs/foil" onClick={() => setMobileOpen(false)} style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", padding: "15px 26px", borderRadius: "10px", textDecoration: "none", textAlign: "center", display: "block" }}>
-                Fencing for Beginners →
+            {/* ── Beginners — top of funnel, most prominent ── */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>NEW TO FENCING?</p>
+              <Link
+                href="/beginners"
+                onClick={() => setMobileOpen(false)}
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 20px", backgroundColor: "rgba(228,0,43,0.08)", border: "1px solid rgba(228,0,43,0.2)", borderRadius: "12px", textDecoration: "none" }}
+              >
+                <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                  <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "22px", lineHeight: "28px", color: "var(--text)" }}>Beginners</span>
+                  <span style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)" }}>No experience needed — start here</span>
+                </div>
+                <span style={{ color: "var(--accent-text)", fontSize: "20px" }}>→</span>
               </Link>
             </div>
 
