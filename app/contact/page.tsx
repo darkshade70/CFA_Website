@@ -72,11 +72,11 @@ export default function ContactPage() {
               }}
             >
               {/* Live map embed */}
-              <div style={{ height: "180px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
+              <div style={{ height: "300px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
                 <iframe
                   src={loc.embedSrc}
                   width="100%"
-                  height="180"
+                  height="300"
                   style={{ border: 0, display: "block" }}
                   allowFullScreen
                   loading="lazy"
