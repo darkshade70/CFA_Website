@@ -101,8 +101,8 @@ export default function OurSpacePage() {
           {/* CTA */}
           <Link
             href="/contact"
-            className="btn-light"
-            style={{ display: "inline-flex", alignItems: "center", gap: "6px", backgroundColor: "var(--text)", color: "var(--bg)", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", padding: "15px 26px", borderRadius: "10px", textDecoration: "none", alignSelf: "flex-start" }}
+            className="btn-primary"
+            style={{ display: "inline-flex", alignItems: "center", gap: "6px", backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", padding: "15px 26px", borderRadius: "10px", textDecoration: "none", alignSelf: "flex-start" }}
           >
             Get in touch →
           </Link>
@@ -167,18 +167,18 @@ export default function OurSpacePage() {
       <section
         className="page-px"
         style={{
-          backgroundColor: "var(--surface)",
+          backgroundColor: "var(--light-bg)",
           paddingTop: "72px",
           paddingBottom: "72px",
           width: "100%",
-          borderTop: "1px solid var(--border)",
-          borderBottom: "1px solid var(--border)",
+          borderTop: "1px solid var(--light-border)",
+          borderBottom: "1px solid var(--light-border)",
           display: "flex",
           flexDirection: "column",
           gap: "36px",
         }}
       >
-        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--light-text)", margin: 0 }}>
           At a glance
         </p>
         <div className="ourspace-stats-grid">
@@ -189,14 +189,14 @@ export default function OurSpacePage() {
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                backgroundColor: "var(--surface-2)",
-                border: "1px solid var(--border)",
+                backgroundColor: "var(--light-surface)",
+                border: "1px solid var(--light-border)",
                 borderRadius: "8px",
                 padding: "10px 16px",
               }}
             >
               <span style={{ color: "var(--accent-text)", fontFamily: ss3, fontWeight: 700, fontSize: "16px", flexShrink: 0 }}>✓</span>
-              <span style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "var(--text)", whiteSpace: "nowrap" }}>
+              <span style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "var(--light-text)", whiteSpace: "nowrap" }}>
                 {item}
               </span>
             </div>
@@ -208,7 +208,7 @@ export default function OurSpacePage() {
       <section
         className="page-px"
         style={{
-          backgroundColor: "var(--light-bg)",
+          backgroundColor: "var(--surface)",
           paddingTop: "80px",
           paddingBottom: "80px",
           display: "flex",
@@ -217,7 +217,7 @@ export default function OurSpacePage() {
           width: "100%",
         }}
       >
-        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--light-text)", margin: 0 }}>
+        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
           Two Oakville locations
         </p>
         <div className="card-row">
@@ -227,17 +227,17 @@ export default function OurSpacePage() {
           ].map((loc) => (
             <div
               key={loc.name}
-              style={{ flex: "1 0 0", minWidth: 0, backgroundColor: "var(--light-surface)", border: "1px solid var(--light-border)", borderRadius: "12px", overflow: "hidden", display: "flex", flexDirection: "column" }}
+              style={{ flex: "1 0 0", minWidth: 0, backgroundColor: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", display: "flex", flexDirection: "column" }}
             >
               <div style={{ height: "240px", flexShrink: 0, overflow: "hidden" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={loc.img} alt={loc.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
               <div style={{ padding: "22px 24px 24px", display: "flex", flexDirection: "column", gap: "6px" }}>
-                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--light-text)", margin: 0 }}>{loc.name}</p>
-                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--light-text-2)", margin: 0 }}>{loc.address}</p>
-                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--light-text-2)", margin: 0 }}>{loc.hours}</p>
-                <Link href="/contact" className="link-hover" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent)", textDecoration: "none" }}>
+                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--text)", margin: 0 }}>{loc.name}</p>
+                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--text-2)", margin: 0 }}>{loc.address}</p>
+                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>{loc.hours}</p>
+                <Link href="/contact" className="link-hover" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent-text)", textDecoration: "none" }}>
                   Get directions →
                 </Link>
               </div>

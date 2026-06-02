@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ProgramCards from "@/components/ProgramCards";
 
 const ss3 = "'Source Sans 3', sans-serif";
 
@@ -116,32 +117,13 @@ const PROGRAMS: Record<string, {
     ctaHeading: "Ready to pick up the épée?",
     classes: [
       {
-        name: "Beginner Épée",
-        desc: "Complete beginners welcome. All equipment provided.",
-        price: "$275",
-        period: "8-week course",
-        features: ["No experience needed", "All ages", "Free intro session"],
-        featured: true,
-        ctaLabel: "Register Now →",
-        ctaType: "primary",
-      },
-      {
-        name: "Intermediate Épée",
-        desc: "Refine your technique and start competitive bouting.",
-        price: "$180",
-        period: "/ month",
-        features: ["Ongoing weekly training", "By assessment"],
-        ctaLabel: "Book assessment →",
-        ctaType: "secondary",
-      },
-      {
-        name: "Adult Épée",
-        desc: "Train at your own pace — all levels welcome.",
+        name: "General Épée",
+        desc: "Open to all skill levels — complete beginners through experienced fencers. Equipment provided for newcomers.",
         price: "From $160",
         period: "/ month",
-        features: ["All skill levels", "Ongoing"],
-        ctaLabel: "Book assessment →",
-        ctaType: "secondary",
+        features: ["All skill levels welcome", "Beginners to advanced", "Equipment provided for newcomers"],
+        ctaLabel: "Register Now →",
+        ctaType: "primary",
       },
     ],
   },
@@ -194,23 +176,13 @@ const PROGRAMS: Record<string, {
     ctaHeading: "Interested in historical fencing?",
     classes: [
       {
-        name: "Historical Intro",
-        desc: "An introduction to HEMA — longsword and historical context.",
-        price: "$275",
-        period: "8-week course",
-        features: ["All gear provided", "No experience needed", "Ages 14+"],
-        featured: true,
-        ctaLabel: "Register Now →",
-        ctaType: "primary",
-      },
-      {
-        name: "Historical Ongoing",
-        desc: "Ongoing HEMA training — technique, sparring, and study.",
+        name: "Historical Fencing",
+        desc: "HEMA training open to all levels — longsword, rapier, dagger, and more. All gear provided for beginners.",
         price: "From $150",
         period: "/ month",
-        features: ["Ongoing weekly sessions", "By assessment"],
-        ctaLabel: "Book assessment →",
-        ctaType: "secondary",
+        features: ["All gear provided", "No experience needed", "Ages 14+"],
+        ctaLabel: "Register Now →",
+        ctaType: "primary",
       },
     ],
   },
@@ -354,95 +326,10 @@ export default async function ProgramPage({
           Start your {prog.name} journey
         </p>
 
-        {/* Wrapping card grid — 368px wide each on desktop, full-width on mobile */}
-        <div
-          className="card-row"
-          style={{ flexWrap: "wrap" }}
-        >
-          {prog.classes.map((cls, idx) => (
-            <div
-              key={cls.name}
-              className={`programs-class-card program-card program-card-hoverable ${cls.featured ? "programs-class-card-featured-border" : "programs-class-card-border"}`}
-              style={{
-                backgroundColor: "var(--light-surface)",
-                border: cls.featured
-                  ? "2px solid var(--accent)"
-                  : "1px solid var(--light-border)",
-                borderRadius: "12px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {/* Class image */}
-              <div style={{ height: "180px", flexShrink: 0, overflow: "hidden" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={(CLASS_IMAGES[slug] ?? CLASS_IMAGES.foil)[idx % (CLASS_IMAGES[slug] ?? CLASS_IMAGES.foil).length]}
-                  alt={cls.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-              </div>
-              {/* Card body */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "22px 22px 24px" }}>
-                <p className="programs-class-card-text" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--light-text)", margin: 0 }}>
-                  {cls.name}
-                </p>
-                <p className="programs-class-card-text2" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--light-text-2)", margin: 0 }}>
-                  {cls.desc}
-                </p>
-                {/* Divider */}
-                <div className="programs-class-card-border" style={{ backgroundColor: "var(--light-border)", height: "1px" }} />
-                {/* Features */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {cls.features.map((f) => (
-                    <div key={f} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                      <span style={{ color: "var(--accent)", fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", flexShrink: 0 }}>✓</span>
-                      <span className="programs-class-card-text" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--light-text)" }}>{f}</span>
-                    </div>
-                  ))}
-                </div>
-                {/* Price */}
-                <p className="programs-class-card-text" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--light-text)", margin: 0 }}>
-                  {cls.price} · {cls.period}
-                </p>
-                {/* CTA */}
-                <Link
-                  href="/register"
-                  className={cls.ctaType === "primary" ? "btn-primary" : "btn-secondary"}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                    backgroundColor: cls.ctaType === "primary" ? "var(--accent)" : "transparent",
-                    border: cls.ctaType === "secondary" ? "1.5px solid var(--border-strong)" : "none",
-                    color: cls.ctaType === "primary" ? "var(--on-accent)" : "var(--light-text)",
-                    fontFamily: ss3,
-                    fontWeight: 700,
-                    fontSize: "15px",
-                    lineHeight: "20px",
-                    padding: "15px 26px",
-                    borderRadius: "10px",
-                    textDecoration: "none",
-                    textAlign: "center",
-                  }}
-                >
-                  {cls.ctaLabel}
-                </Link>
-                {cls.ctaType === "primary" && (
-                  <Link
-                    href="/contact"
-                    className="link-hover"
-                    style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--accent)", textDecoration: "none" }}
-                  >
-                    Questions? Get in touch →
-                  </Link>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProgramCards
+          classes={prog.classes}
+          imgs={CLASS_IMAGES[slug] ?? CLASS_IMAGES.foil}
+        />
       </section>
 
       {/* ── CTA ── */}
