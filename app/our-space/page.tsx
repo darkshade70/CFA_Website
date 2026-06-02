@@ -92,58 +92,33 @@ export default function OurSpacePage() {
         style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "64px" }}
       >
         {/* Info block */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
 
-          {/* Heading + tagline */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "680px" }}>
+          {/* Heading + one-liner */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
               Built for fencing.
             </p>
-            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "30px", color: "var(--text-2)", margin: 0 }}>
-              Ontario&apos;s largest private fencing club. We&apos;re not a community centre or a borrowed gym — CFA is a dedicated facility built around the sport, with the equipment, floor space, and coaching staff to match.
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "27px", color: "var(--text-2)", margin: 0, maxWidth: "560px" }}>
+              Not a gym we rent on Thursdays. A dedicated fencing club, purpose-built and open seven days a week.
             </p>
           </div>
 
-          {/* Four highlight columns */}
-          <div className="ourspace-highlights">
+          {/* Amenity grid */}
+          <div className="ourspace-amenities">
             {[
-              {
-                label: "The pistes",
-                body: "Eighteen full-length competition strips with professional electronic scoring systems on every piste — identical to the setups used at provincial and national tournaments. Our sprung floor reduces impact so fencers can train longer without breaking down.",
-                points: ["Competition-grade strip layout", "Electronic scoring on every piste", "Purpose-built sprung flooring"],
-              },
-              {
-                label: "The gear",
-                body: "Every beginner course includes full loaner equipment — mask, jacket, glove, and blade. No kit required to start. Our equipment library is stocked and maintained so you can try fencing properly before committing to your own gear.",
-                points: ["Full kit included for beginners", "Maintained weapon library", "No upfront investment needed"],
-              },
-              {
-                label: "The coaching",
-                body: "Our staff spans 25+ years of competitive fencing across foil, épée, sabre, and historical. Coaching is structured, progression is tracked, and every session includes real feedback — not just open floor time.",
-                points: ["National-level competitive coaches", "Youth and adult programs", "Structured skill development"],
-              },
-              {
-                label: "The access",
-                body: "Open seven days a week across two Oakville locations. Beginner courses run in 8-week blocks, recreational bouts happen every week, and competitive training is year-round. There&apos;s always a session that fits.",
-                points: ["7 days — evenings & weekends", "Two Oakville clubs", "Year-round programming"],
-              },
-            ].map((f, i) => (
-              <div key={f.label} style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", paddingLeft: i > 0 ? "36px" : "0", borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}>
-                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "17px", lineHeight: "22px", color: "var(--text)", margin: "0 0 16px" }}>
-                  {f.label}
-                </p>
-                {/* flex:1 stretches this paragraph to match the tallest column, aligning bullet rows */}
-                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "23px", color: "var(--text-2)", margin: 0, flex: 1 }}>
-                  {f.body}
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "20px" }}>
-                  {f.points.map((pt) => (
-                    <div key={pt} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "var(--accent)", flexShrink: 0, display: "inline-block" }} />
-                      <span style={{ fontFamily: ss3, fontWeight: 600, fontSize: "13px", lineHeight: "18px", color: "var(--text-2)" }}>{pt}</span>
-                    </div>
-                  ))}
-                </div>
+              "18 full-length competition pistes",
+              "Electronic scoring on every strip",
+              "Purpose-built sprung flooring",
+              "Loaner gear for every beginner",
+              "National-level coaching staff",
+              "Foil, épée, sabre & historical programs",
+              "Open 7 days — evenings & weekends",
+              "Two locations in Oakville",
+            ].map((item) => (
+              <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "15px 0", borderBottom: "1px solid var(--border)" }}>
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--accent)", flexShrink: 0 }} />
+                <span style={{ fontFamily: ss3, fontWeight: 600, fontSize: "15px", lineHeight: "22px", color: "var(--text)" }}>{item}</span>
               </div>
             ))}
           </div>

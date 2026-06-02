@@ -222,6 +222,15 @@ body {
   gap: 0;
 }
 
+/* Amenity grid — 2 columns */
+.ourspace-amenities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  width: 100%;
+  max-width: 860px;
+}
+
 /* Bento photo grid */
 .ourspace-bento {
   display: grid;
@@ -453,6 +462,9 @@ body {
   .ourspace-highlights > div:nth-child(1),
   .ourspace-highlights > div:nth-child(2) { border-top: none !important; padding-top: 0 !important; }
   .ourspace-highlights > div:nth-child(even) { padding-left: 24px !important; }
+
+  /* Amenity grid → 1 column on mobile */
+  .ourspace-amenities { grid-template-columns: 1fr; column-gap: 0; }
 
   /* Bento → 2-col simple grid on mobile */
   .ourspace-bento {
