@@ -41,7 +41,7 @@ export default function Navbar() {
           </Link>
 
           <div style={{ display: "flex", alignItems: "center", gap: "36px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "4px", fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text-2)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text-2)" }}>
               {/* Programs dropdown */}
               <div className="relative" onMouseEnter={() => setProgramsOpen(true)} onMouseLeave={() => setProgramsOpen(false)}>
                 <button className="nav-link flex items-center gap-1 cursor-pointer" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", background: "none", border: "none" }}>
