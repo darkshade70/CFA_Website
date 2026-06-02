@@ -5,37 +5,20 @@ export const metadata: Metadata = { title: "Our Space" };
 
 const ss3 = "'Source Sans 3', sans-serif";
 
-const FEATURES = [
-  {
-    heading: "Eighteen full-length pistes",
-    body: "Eighteen regulation strips with electric scoring on every one. Whether you're drilling footwork or fencing a bout, you're always on competition-grade ground.",
-    bullets: ["Electric scoring on every strip", "Regulation 14-metre pistes", "Room for 40 fencers at once"],
-    photoLeft: true,
-    img: "/fencing2.webp",
-    bg: "var(--bg)",
-  },
-  {
-    heading: "A sprung maple floor",
-    body: "A proper sprung maple sports floor underfoot — built for the explosive footwork fencing demands, and easy on the joints over a long session.",
-    bullets: ["Purpose-built sprung maple", "Kinder on knees and ankles"],
-    photoLeft: false,
-    img: "/fencing3.jpg",
-    bg: "var(--surface)",
-  },
-  {
-    heading: "Everything on site",
-    body: "Change rooms, a pro shop and armoury, loaner gear for newcomers, and a viewing area so parents can watch every touch — with free parking at the door.",
-    bullets: ["Pro shop & armoury", "Loaner gear for beginners", "Viewing area for parents", "Free parking"],
-    photoLeft: true,
-    img: "/fencing4.avif",
-    bg: "var(--bg)",
-  },
+const STATS = [
+  { n: "18",  label: "Full-length pistes" },
+  { n: "40+", label: "Fencers at once" },
+  { n: "7",   label: "Days a week" },
+  { n: "2",   label: "Oakville locations" },
 ];
 
-const AT_A_GLANCE = [
-  "18 full-length pistes", "Electric scoring", "Sprung maple floor",
-  "Change rooms", "Loaner gear", "Pro shop & armoury",
-  "Viewing area", "Free parking", "Open 7 days", "Two locations",
+const GALLERY = [
+  { img: "/fencing2.webp", alt: "Eighteen full-length pistes" },
+  { img: "/fencing3.jpg",  alt: "Sprung maple floor" },
+  { img: "/fencing5.webp", alt: "Youth training session" },
+  { img: "/fencing6.webp", alt: "Coaching on the piste" },
+  { img: "/fencing7.avif", alt: "Competition bout" },
+  { img: "/fencing8.jpg",  alt: "The club space" },
 ];
 
 export default function OurSpacePage() {
@@ -44,13 +27,11 @@ export default function OurSpacePage() {
       {/* Nav spacer */}
       <div className="nav-spacer" />
 
-      {/* ── HERO (node 1:2018) — 600px with fencing photo + text overlay ── */}
+      {/* ── HERO ── */}
       <div
-        data-node-id="1:2018"
         className="hero-ourspace"
         style={{ position: "relative", overflow: "hidden", backgroundColor: "#1a1713", width: "100%" }}
       >
-        {/* Background image */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/fencing1.jpg"
@@ -58,7 +39,6 @@ export default function OurSpacePage() {
           aria-hidden
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
-        {/* Dark gradient overlay */}
         <div
           style={{
             position: "absolute",
@@ -66,39 +46,16 @@ export default function OurSpacePage() {
             background: "linear-gradient(to right, rgba(12,11,11,0.88) 0%, rgba(12,11,11,0.65) 55%, rgba(12,11,11,0.25) 100%)",
           }}
         />
-
-        {/* Content block — positioned at left: 120px, top: 220px in Figma */}
         <div className="ourspace-hero-content">
-          {/* "OUR FACILITY" eyebrow label */}
           <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "12px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", textTransform: "uppercase", margin: 0 }}>
             Our facility
           </p>
-          {/* "Our space." heading */}
           <p className="h-display" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
             Our space.
           </p>
-          {/* Description */}
-          <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--text-2)", maxWidth: "560px", margin: 0 }}>
+          <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--text-2)", maxWidth: "520px", margin: 0 }}>
             A purpose-built fencing club — not a gym we borrow two nights a week. Open seven days, now at two Oakville locations.
           </p>
-          {/* Mini-stats row */}
-          <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
-            {[
-              { num: "18", label: "Full-length pistes" },
-              { num: "40", label: "Fencers at once" },
-              { num: "7",  label: "Days a week" },
-            ].map((s) => (
-              <div key={s.label} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "36px", lineHeight: "40px", letterSpacing: "-0.36px", color: "var(--text)", margin: 0 }}>
-                  {s.num}
-                </p>
-                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
-          {/* CTA */}
           <Link
             href="/contact"
             className="btn-primary"
@@ -109,103 +66,48 @@ export default function OurSpacePage() {
         </div>
       </div>
 
-      {/* ── PULL QUOTE BAND (node 1:2037) ── */}
+      {/* ── STATS STRIP ── */}
       <section
         className="page-px"
-        style={{ backgroundColor: "var(--bg)", width: "100%", paddingTop: "80px", paddingBottom: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}
+        style={{ backgroundColor: "var(--surface)", width: "100%", paddingTop: "52px", paddingBottom: "52px", borderBottom: "1px solid var(--border)" }}
       >
-        <p
-          style={{
-            fontFamily: ss3,
-            fontWeight: 700,
-            fontSize: "28px",
-            lineHeight: "40px",
-            letterSpacing: "-0.14px",
-            color: "var(--text)",
-            maxWidth: "860px",
-            margin: 0,
-            textAlign: "center",
-          }}
-        >
-          Most clubs borrow a gym for a few nights a week. We built ours — eighteen full-length strips, a sprung maple floor, and room to grow, all under one roof.
-        </p>
-      </section>
-
-      {/* ── ALTERNATING FEATURE SECTIONS (nodes 1:2039, 1:2055, 1:2068) ── */}
-      {FEATURES.map((f) => (
-        <section
-          key={f.heading}
-          className="page-px"
-          style={{ backgroundColor: f.bg, paddingTop: "48px", paddingBottom: "48px", width: "100%" }}
-        >
-          <div className="ourspace-feature-row">
-            {f.photoLeft ? (
-              <>
-                <div className="ourspace-feature-photo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={f.img} alt={f.heading} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                </div>
-                <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
-                  <FeatureText f={f} />
-                </div>
-              </>
-            ) : (
-              <>
-                <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
-                  <FeatureText f={f} />
-                </div>
-                <div className="ourspace-feature-photo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={f.img} alt={f.heading} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                </div>
-              </>
-            )}
-          </div>
-        </section>
-      ))}
-
-      {/* ── AT A GLANCE (node 1:2087) ── */}
-      <section
-        className="page-px"
-        style={{
-          backgroundColor: "var(--light-bg)",
-          paddingTop: "72px",
-          paddingBottom: "72px",
-          width: "100%",
-          borderTop: "1px solid var(--light-border)",
-          borderBottom: "1px solid var(--light-border)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "36px",
-        }}
-      >
-        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--light-text)", margin: 0 }}>
-          At a glance
-        </p>
-        <div className="ourspace-stats-grid">
-          {AT_A_GLANCE.map((item) => (
-            <div
-              key={item}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                backgroundColor: "var(--light-surface)",
-                border: "1px solid var(--light-border)",
-                borderRadius: "8px",
-                padding: "10px 16px",
-              }}
-            >
-              <span style={{ color: "var(--accent-text)", fontFamily: ss3, fontWeight: 700, fontSize: "16px", flexShrink: 0 }}>✓</span>
-              <span style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "22px", color: "var(--light-text)", whiteSpace: "nowrap" }}>
-                {item}
-              </span>
+        <div className="ourspace-stats-strip">
+          {STATS.map((s) => (
+            <div key={s.label} className="ourspace-stat">
+              <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "52px", lineHeight: "52px", letterSpacing: "-1.5px", color: "var(--text)", margin: 0 }}>
+                {s.n}
+              </p>
+              <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>
+                {s.label}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── TWO OAKVILLE LOCATIONS (node 1:2120) ── */}
+      {/* ── GALLERY ── */}
+      <section
+        className="page-px"
+        style={{ backgroundColor: "var(--bg)", paddingTop: "72px", paddingBottom: "72px", width: "100%", display: "flex", flexDirection: "column", gap: "36px" }}
+      >
+        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+          Our facility
+        </p>
+        <div className="ourspace-bento">
+          {GALLERY.map((item, i) => (
+            <div key={i} style={{ overflow: "hidden", borderRadius: "6px", backgroundColor: "var(--surface)" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={item.img}
+                alt={item.alt}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── TWO OAKVILLE LOCATIONS ── */}
       <section
         className="page-px"
         style={{
@@ -224,7 +126,7 @@ export default function OurSpacePage() {
         <div className="card-row">
           {[
             { name: "Wyecroft Rd", address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed", directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8" },
-            { name: "Second location", address: "Now open in Oakville — full address coming soon.", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1&output=embed", directionsUrl: "/contact" },
+            { name: "Second location", address: "Now open in Oakville — full address coming soon.", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1&output=embed", directionsUrl: "https://www.google.com/maps/dir//208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1" },
           ].map((loc) => (
             <div
               key={loc.name}
@@ -255,7 +157,7 @@ export default function OurSpacePage() {
         </div>
       </section>
 
-      {/* ── CTA (node 1:2137) ── */}
+      {/* ── CTA ── */}
       <section
         className="page-px page-py-lg"
         style={{ backgroundColor: "var(--accent)", display: "flex", flexDirection: "column", alignItems: "center", gap: "18px", width: "100%" }}
@@ -264,7 +166,7 @@ export default function OurSpacePage() {
           Come see it for yourself.
         </p>
         <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--on-accent)", textAlign: "center", maxWidth: "560px", margin: 0 }}>
-          Book a free walk-through — we'll show you around, introduce you to the team, and help you find the right class.
+          Book a free walk-through — we&apos;ll show you around, introduce you to the team, and help you find the right class.
         </p>
         <Link
           href="/visit"
@@ -274,27 +176,6 @@ export default function OurSpacePage() {
           Book a free visit
         </Link>
       </section>
-    </>
-  );
-}
-
-function FeatureText({ f }: { f: typeof FEATURES[0] }) {
-  return (
-    <>
-      <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-        {f.heading}
-      </p>
-      <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--text-2)", margin: 0 }}>
-        {f.body}
-      </p>
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        {f.bullets.map((b) => (
-          <div key={b} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-            <span style={{ color: "var(--accent-text)", fontFamily: ss3, fontWeight: 700, fontSize: "18px", lineHeight: "28px", flexShrink: 0 }}>✓</span>
-            <span style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--text-2)" }}>{b}</span>
-          </div>
-        ))}
-      </div>
     </>
   );
 }
