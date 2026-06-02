@@ -111,19 +111,20 @@ export default function OurSpacePage() {
 
       {/* ── PULL QUOTE BAND (node 1:2037) ── */}
       <section
-        style={{ backgroundColor: "var(--surface)", width: "100%", paddingTop: "88px", paddingBottom: "40px" }}
+        className="page-px"
+        style={{ backgroundColor: "var(--bg)", width: "100%", paddingTop: "80px", paddingBottom: "80px", display: "flex", alignItems: "center", justifyContent: "center" }}
       >
         <p
-          className="pull-quote"
           style={{
             fontFamily: ss3,
             fontWeight: 700,
             fontSize: "28px",
-            lineHeight: "38px",
+            lineHeight: "40px",
             letterSpacing: "-0.14px",
             color: "var(--text)",
-            maxWidth: "900px",
-            margin: "0 auto",
+            maxWidth: "860px",
+            margin: 0,
+            textAlign: "center",
           }}
         >
           Most clubs borrow a gym for a few nights a week. We built ours — eighteen full-length strips, a sprung maple floor, and room to grow, all under one roof.
