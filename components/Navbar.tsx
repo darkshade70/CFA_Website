@@ -42,33 +42,6 @@ export default function Navbar() {
           <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "4px", fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px" }}>
 
-              {/* ── Beginners — highlighted top-of-funnel link ── */}
-              <Link
-                href="/beginners"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  padding: "8px 14px",
-                  borderRadius: "8px",
-                  backgroundColor: "rgba(228,0,43,0.1)",
-                  border: "1px solid rgba(228,0,43,0.25)",
-                  color: "var(--accent-text)",
-                  fontFamily: ss3,
-                  fontWeight: 700,
-                  fontSize: "15px",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                  transition: "background-color 0.15s ease",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = "rgba(228,0,43,0.18)")}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = "rgba(228,0,43,0.1)")}
-              >
-                {/* Pulse dot */}
-                <span style={{ width: "7px", height: "7px", borderRadius: "50%", backgroundColor: "var(--accent)", flexShrink: 0, display: "inline-block" }} />
-                Start Here
-              </Link>
-
               {/* Programs dropdown */}
               <div className="relative" onMouseEnter={() => setProgramsOpen(true)} onMouseLeave={() => setProgramsOpen(false)}>
                 <button className="nav-link flex items-center gap-1 cursor-pointer" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", background: "none", border: "none" }}>
