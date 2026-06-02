@@ -153,11 +153,13 @@ export default function Navbar() {
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 <div style={{ display: "flex", gap: "10px" }}>
                   <a href="https://wa.me/14165555555" style={{ flex: "1 0 0", backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "16px", display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
-                    <span style={{ fontSize: "20px" }}>📱</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
                     <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)" }}>WhatsApp</span>
                   </a>
                   <div style={{ flex: "1 0 0", backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span style={{ fontSize: "20px" }}>💬</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/wechat.svg" alt="WeChat" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
                     <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)" }}>WeChat</span>
                   </div>
                 </div>
