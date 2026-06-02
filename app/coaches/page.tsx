@@ -5,43 +5,42 @@ export const metadata: Metadata = { title: "Coaches" };
 
 const ss3 = "'Source Sans 3', sans-serif";
 
-// Fencing stock photos — swap with real headshots when available
 const COACHES = [
   {
     name: "Alice Lu",
     role: "President & head coach",
     bio: "Twenty-five years of fencing and fifteen building CFA into one of Ontario's largest clubs. Alice oversees every program and still coaches on the floor every week.",
-    img: "/fencing5.webp",
+    img: "/coach-alice.png",
   },
   {
     name: "Brily Lepine",
     role: "Foil & historical coach",
     bio: "Fencing since the early '90s across foil, longsword and rapier. Brily leads our historical program and brings decades of teaching to every session.",
-    img: "/fencing6.webp",
+    img: "/coach-brily.png",
   },
   {
     name: "Kyle Foster",
     role: "Owner & veteran fencer",
-    bio: "Active veteran competitor who runs the club operations and programming alongside Lisa Huzel, whose work on the FIE Medical Commission keeps fencing safe.",
-    img: "/fencing7.avif",
+    bio: "Active veteran competitor who runs the club operations and programming. Kyle brings decades of competitive experience to every class he leads.",
+    img: "/coach-kyle.png",
   },
   {
-    name: "Lisa Huzel",
-    role: "Owner & FIE Medical Commissioner",
-    bio: "Lisa sits on the FIE Medical Commission — fencing's international safety body. She brings that expertise directly to CFA's coaching and safety protocols.",
-    img: "/fencing8.jpg",
+    name: "Anna",
+    role: "Coach",
+    bio: "Dedicated coach with a passion for developing fencers at every level. Anna works across multiple programs and brings energy and precision to every session.",
+    img: "/coach-anna.png",
   },
   {
-    name: "Marcus Chen",
-    role: "Youth competitive coach",
-    bio: "Former national-level competitor turned coach. Marcus runs our youth competitive stream and has guided multiple athletes to the provincial podium.",
-    img: "/fencing9.webp",
+    name: "Brendon",
+    role: "Coach",
+    bio: "A skilled fencer and coach committed to helping athletes reach their potential. Brendon's technical approach and patience make him a favourite among students.",
+    img: "/coach-brendon.png",
   },
   {
-    name: "Sofia Almeida",
-    role: "Épée specialist",
-    bio: "A decorated veteran épéeist with international circuit experience. Sofia brings elite-level tactical coaching to athletes at every stage of their development.",
-    img: "/fencing10.avif",
+    name: "Ethan",
+    role: "Coach",
+    bio: "Ethan combines competitive experience with a natural ability to teach. He works with youth and adult fencers alike, focusing on fundamentals and game sense.",
+    img: "/coach-ethan.png",
   },
 ];
 
@@ -60,7 +59,7 @@ function CoachCard({ coach }: { coach: { name: string; role: string; bio: string
       {/* Coach photo */}
       <div style={{ height: "340px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={coach.img} alt={coach.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        <img src={coach.img} alt={coach.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }} />
       </div>
       {/* Card body */}
       <div style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "24px 24px 26px" }}>
