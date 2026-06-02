@@ -86,48 +86,47 @@ export default function OurSpacePage() {
         </div>
       </section>
 
-      {/* ── FACILITY DESCRIPTION + GALLERY ── */}
+      {/* ── FACILITY INFO + GALLERY ── */}
       <section
         className="page-px"
         style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "64px" }}
       >
-        {/* Description block */}
-        <div className="ourspace-facility-row">
-          {/* Left — heading + copy */}
-          <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
+        {/* Info block */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+
+          {/* Heading + tagline */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px", maxWidth: "640px" }}>
             <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-              Built for fencing.<br />Nothing else.
+              Built for fencing.
             </p>
-            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0, maxWidth: "520px" }}>
-              CFA isn&apos;t a community centre or a borrowed gym. Our Wyecroft Rd location was purpose-built as a fencing club — eighteen full-length pistes, proper sprung flooring, and professional-grade electronic scoring systems on every strip.
-            </p>
-            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0, maxWidth: "520px" }}>
-              We&apos;re open seven days a week across two Oakville locations, with something running every evening and all weekend — beginner courses, recreational bouts, and elite competitive training all under the same roof.
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
+              A purpose-built fencing facility — not a gym we borrow two nights a week. Eighteen full-length pistes, electronic scoring, and everything a fencer needs, open seven days across two Oakville locations.
             </p>
           </div>
 
-          {/* Right — facility highlights */}
-          <div style={{ flex: "0 0 auto", width: "300px", display: "flex", flexDirection: "column", gap: "0" }}>
+          {/* Three highlight columns */}
+          <div className="ourspace-highlights">
             {[
-              { icon: "⚡", label: "Electronic scoring on every piste" },
-              { icon: "🏅", label: "18 full-length competition strips" },
-              { icon: "👕", label: "Loaner gear for beginners" },
-              { icon: "📅", label: "Open 7 days — evenings & weekends" },
-              { icon: "📍", label: "Two Oakville locations" },
-              { icon: "🏆", label: "Home to provincial-level competitors" },
-            ].map((item, i, arr) => (
-              <div
-                key={item.label}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "14px",
-                  padding: "16px 0",
-                  borderBottom: i < arr.length - 1 ? "1px solid var(--border)" : "none",
-                }}
-              >
-                <span style={{ fontSize: "18px", flexShrink: 0, width: "24px", textAlign: "center" }}>{item.icon}</span>
-                <span style={{ fontFamily: ss3, fontWeight: 600, fontSize: "15px", lineHeight: "22px", color: "var(--text)" }}>{item.label}</span>
+              {
+                label: "The pistes",
+                body: "18 full-length competition strips with electronic scoring systems — the same setup used at provincial tournaments.",
+              },
+              {
+                label: "The gear",
+                body: "Masks, jackets, and blades provided for every beginner class. Nothing to buy before you start.",
+              },
+              {
+                label: "The schedule",
+                body: "Open 7 days — evenings and weekends — with beginner courses, recreational bouts, and competitive training running every week.",
+              },
+            ].map((f, i) => (
+              <div key={f.label} style={{ display: "flex", flexDirection: "column", gap: "12px", paddingLeft: i > 0 ? "40px" : "0", borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}>
+                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "18px", lineHeight: "24px", color: "var(--text)", margin: 0 }}>
+                  {f.label}
+                </p>
+                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "15px", lineHeight: "24px", color: "var(--text-2)", margin: 0 }}>
+                  {f.body}
+                </p>
               </div>
             ))}
           </div>
