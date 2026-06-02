@@ -128,14 +128,15 @@ export default function OurSpacePage() {
                 points: ["7 days — evenings & weekends", "Two Oakville clubs", "Year-round programming"],
               },
             ].map((f, i) => (
-              <div key={f.label} style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "16px", paddingLeft: i > 0 ? "36px" : "0", borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}>
-                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "17px", lineHeight: "22px", color: "var(--text)", margin: 0 }}>
+              <div key={f.label} style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", paddingLeft: i > 0 ? "36px" : "0", borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}>
+                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "17px", lineHeight: "22px", color: "var(--text)", margin: "0 0 16px" }}>
                   {f.label}
                 </p>
-                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "23px", color: "var(--text-2)", margin: 0 }}>
+                {/* flex:1 stretches this paragraph to match the tallest column, aligning bullet rows */}
+                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "23px", color: "var(--text-2)", margin: 0, flex: 1 }}>
                   {f.body}
                 </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "4px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "20px" }}>
                   {f.points.map((pt) => (
                     <div key={pt} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "var(--accent)", flexShrink: 0, display: "inline-block" }} />
