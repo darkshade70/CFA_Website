@@ -111,6 +111,27 @@ body {
   color: var(--text);
 }
 
+/* Secondary / outline button — "Book assessment →" */
+.btn-secondary {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--light-text) !important;
+  border-color: var(--light-text) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Program class card — red border on hover */
+.program-card-hoverable {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: default;
+}
+.program-card-hoverable:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
 /* Programs dropdown items */
 .dropdown-item {
   transition: background-color 0.12s ease, color 0.12s ease;

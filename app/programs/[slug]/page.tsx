@@ -362,7 +362,7 @@ export default async function ProgramPage({
           {prog.classes.map((cls, idx) => (
             <div
               key={cls.name}
-              className={`programs-class-card program-card ${cls.featured ? "programs-class-card-featured-border" : "programs-class-card-border"}`}
+              className={`programs-class-card program-card program-card-hoverable ${cls.featured ? "programs-class-card-featured-border" : "programs-class-card-border"}`}
               style={{
                 backgroundColor: "var(--light-surface)",
                 border: cls.featured
@@ -409,7 +409,7 @@ export default async function ProgramPage({
                 {/* CTA */}
                 <Link
                   href="/register"
-                  className={cls.ctaType === "primary" ? "btn-primary" : undefined}
+                  className={cls.ctaType === "primary" ? "btn-primary" : "btn-secondary"}
                   style={{
                     display: "flex",
                     alignItems: "center",
