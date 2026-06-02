@@ -68,19 +68,20 @@ export default function Navbar() {
         </div>
 
         {/* ── Mobile nav bar ── */}
-        <div className="flex md:hidden items-center justify-between" style={{ padding: "16px 20px" }}>
-          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+        <div className="flex md:hidden items-center justify-between" style={{ padding: "14px 20px" }}>
+          {/* Logo — clipped to icon only on mobile (full logo is too wide) */}
+          <Link href="/" style={{ textDecoration: "none", display: "block", overflow: "hidden", width: "68px", height: "32px", flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/cfalogo.png" alt="Canadian Fencing Academy" style={{ height: "38px", width: "auto", display: "block" }} />
+            <img src="/cfalogo.png" alt="Canadian Fencing Academy" style={{ height: "32px", width: "auto", display: "block" }} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <Link href="/register" className="btn-primary" style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "18px", padding: "9px 14px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
-              Register →
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <Link href="/register" className="btn-primary" style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "18px", padding: "10px 18px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
+              Register Now →
             </Link>
-            <button onClick={() => setMobileOpen(true)} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: "5px", padding: "2px" }}>
-              <span style={{ display: "block", width: "24px", height: "2.5px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
-              <span style={{ display: "block", width: "24px", height: "2.5px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
-              <span style={{ display: "block", width: "24px", height: "2.5px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
+            <button onClick={() => setMobileOpen(true)} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: "5px", padding: "4px", flexShrink: 0 }}>
+              <span style={{ display: "block", width: "22px", height: "2px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
+              <span style={{ display: "block", width: "22px", height: "2px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
+              <span style={{ display: "block", width: "22px", height: "2px", backgroundColor: "var(--text)", borderRadius: "2px" }} />
             </button>
           </div>
         </div>

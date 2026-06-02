@@ -256,7 +256,7 @@ export default function HomePage() {
           </p>
           <div style={{ display: "flex", gap: "28px", flexWrap: "wrap" }}>
             <Link
-              href="/register"
+              href="/visit"
               className="link-hover"
               style={{
                 fontFamily: ss3,

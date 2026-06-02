@@ -99,7 +99,7 @@ export default function CoachesPage() {
         <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", whiteSpace: "nowrap", margin: 0 }}>
           Our team
         </p>
-        <p className="h-page" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0, whiteSpace: "nowrap" }}>
+        <p className="h-page" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
           Meet our experienced staff and coaches
         </p>
       </div>
