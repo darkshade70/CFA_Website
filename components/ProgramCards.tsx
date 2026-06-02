@@ -32,8 +32,8 @@ export default function ProgramCards({ classes, imgs }: Props) {
     const cls = classes[0];
     return (
       <div
-        className="programs-featured-card programs-class-card programs-class-card-featured-border"
-        style={{ backgroundColor: "var(--light-surface)", border: "2px solid var(--accent)" }}
+        className="programs-featured-card programs-class-card programs-class-card-border program-card-hoverable"
+        style={{ backgroundColor: "var(--light-surface)", border: "1px solid var(--light-border)" }}
       >
         <div className="programs-featured-card-img">
           {/* eslint-disable-next-line @next/next/no-img-element */}

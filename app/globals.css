@@ -89,7 +89,9 @@ body {
   transition: opacity 0.15s ease, transform 0.12s ease;
 }
 .btn-light:hover {
-  opacity: 0.82;
+  background-color: #0c0b0b !important;
+  color: #ffffff !important;
+  opacity: 1;
   transform: translateY(-1px);
 }
 
@@ -242,6 +244,10 @@ body {
 
 /* ── Coaches page grid ─────────────────────────────────────────────────────── */
 .coaches-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; }
+
+/* ── Book a visit page ─────────────────────────────────────────────────────── */
+.visit-layout  { display: flex; gap: 48px; align-items: flex-start; width: 100%; }
+.visit-sidebar { width: 340px; flex-shrink: 0; }
 
 /* ── Footer show/hide ──────────────────────────────────────────────────────── */
 .footer-desktop { display: flex !important; }
@@ -397,4 +403,8 @@ body {
 
   /* Our Space: shorter gallery main on mobile */
   .space-gallery-main { height: 300px !important; }
+
+  /* Book a visit: stack form + sidebar on mobile */
+  .visit-layout  { flex-direction: column; }
+  .visit-sidebar { width: 100%; }
 }

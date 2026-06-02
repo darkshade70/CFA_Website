@@ -31,6 +31,18 @@ const COACHES = [
     bio: "Lisa sits on the FIE Medical Commission — fencing's international safety body. She brings that expertise directly to CFA's coaching and safety protocols.",
     img: "/fencing8.jpg",
   },
+  {
+    name: "Marcus Chen",
+    role: "Youth competitive coach",
+    bio: "Former national-level competitor turned coach. Marcus runs our youth competitive stream and has guided multiple athletes to the provincial podium.",
+    img: "/fencing9.webp",
+  },
+  {
+    name: "Sofia Almeida",
+    role: "Épée specialist",
+    bio: "A decorated veteran épéeist with international circuit experience. Sofia brings elite-level tactical coaching to athletes at every stage of their development.",
+    img: "/fencing10.avif",
+  },
 ];
 
 function CoachCard({ coach }: { coach: { name: string; role: string; bio: string; img: string } }) {
@@ -87,8 +99,8 @@ export default function CoachesPage() {
         <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", whiteSpace: "nowrap", margin: 0 }}>
           Our team
         </p>
-        <p className="h-page" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-          Meet our experienced<br />staff and coaches
+        <p className="h-page" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0, whiteSpace: "nowrap" }}>
+          Meet our experienced staff and coaches
         </p>
       </div>
 
@@ -120,7 +132,7 @@ export default function CoachesPage() {
           Come meet the team.
         </p>
         <Link
-          href="/contact"
+          href="/visit"
           className="btn-light"
           style={{ backgroundColor: "var(--text)", color: "var(--bg)", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", padding: "16px 30px", borderRadius: "10px", textDecoration: "none" }}
         >

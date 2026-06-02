@@ -352,7 +352,7 @@ export default async function ProgramPage({
           Get in touch — a quick assessment and we'll place you in the right class.
         </p>
         <Link
-          href="/register"
+          href="/visit"
           className="btn-light"
           style={{ backgroundColor: "var(--text)", color: "var(--bg)", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", padding: "16px 30px", borderRadius: "10px", textDecoration: "none" }}
         >
