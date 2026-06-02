@@ -223,24 +223,32 @@ export default function OurSpacePage() {
         </p>
         <div className="card-row">
           {[
-            { name: "Wyecroft Rd", address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON", hours: "Open 7 days — evenings & weekends", img: "/fencing9.webp" },
-            { name: "Second location", address: "Now open in Oakville — full address coming soon.", hours: "Open 7 days — evenings & weekends", img: "/fencing10.avif" },
+            { name: "Wyecroft Rd", address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed", directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8" },
+            { name: "Second location", address: "Now open in Oakville — full address coming soon.", hours: "Open 7 days — evenings & weekends", embedSrc: "https://maps.google.com/maps?q=Oakville,+ON&output=embed", directionsUrl: "/contact" },
           ].map((loc) => (
             <div
               key={loc.name}
               style={{ flex: "1 0 0", minWidth: 0, backgroundColor: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", display: "flex", flexDirection: "column" }}
             >
               <div style={{ height: "240px", flexShrink: 0, overflow: "hidden" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={loc.img} alt={loc.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <iframe
+                  src={loc.embedSrc}
+                  width="100%"
+                  height="240"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={loc.name}
+                />
               </div>
               <div style={{ padding: "22px 24px 24px", display: "flex", flexDirection: "column", gap: "6px" }}>
                 <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--text)", margin: 0 }}>{loc.name}</p>
                 <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--text-2)", margin: 0 }}>{loc.address}</p>
                 <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>{loc.hours}</p>
-                <Link href="/contact" className="link-hover" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent-text)", textDecoration: "none" }}>
+                <a href={loc.directionsUrl} target="_blank" rel="noopener noreferrer" className="link-hover" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent-text)", textDecoration: "none" }}>
                   Get directions →
-                </Link>
+                </a>
               </div>
             </div>
           ))}

@@ -7,15 +7,17 @@ const ss3 = "'Source Sans 3', sans-serif";
 const LOCATIONS = [
   {
     name: "Wyecroft Rd",
-    address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3V1",
+    address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8",
     hours: "Open 7 days — evenings & weekends",
-    mapsUrl: "https://maps.google.com/?q=220+Wyecroft+Rd,+Oakville",
+    mapsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8",
+    embedSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed",
   },
   {
     name: "Second location",
     address: "Now open in Oakville — full address coming soon.",
     hours: "Open 7 days — evenings & weekends",
-    mapsUrl: "#",
+    mapsUrl: "https://www.google.com/maps/search/Oakville,+ON",
+    embedSrc: "https://maps.google.com/maps?q=Oakville,+ON&output=embed",
   },
 ];
 
@@ -69,13 +71,17 @@ export default function ContactPage() {
                 width: "100%",
               }}
             >
-              {/* Map / facility image */}
+              {/* Live map embed */}
               <div style={{ height: "180px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/fencing10.avif"
-                  alt="Location"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                <iframe
+                  src={loc.embedSrc}
+                  width="100%"
+                  height="180"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={loc.name}
                 />
               </div>
               {/* Location details */}

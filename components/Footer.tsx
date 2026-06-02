@@ -24,16 +24,35 @@ export default function Footer() {
             </p>
             <div style={{ display: "flex", gap: "12px", width: "100%" }}>
               {[
-                { name: "Wyecroft Rd", addr: "Unit 46 – 220 Wyecroft Rd, Oakville" },
-                { name: "Second location", addr: "Now open — Oakville" },
+                {
+                  name: "Wyecroft Rd",
+                  addr: "Unit 46 – 220 Wyecroft Rd, Oakville",
+                  mapSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed",
+                  directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8",
+                },
+                {
+                  name: "Second location",
+                  addr: "Now open — Oakville",
+                  mapSrc: "https://maps.google.com/maps?q=Oakville,+ON&output=embed",
+                  directionsUrl: "/contact",
+                },
               ].map((loc) => (
                 <div key={loc.name} style={{ flex: "1 0 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <div style={{ backgroundColor: "var(--surface-2)", height: "93px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px" }}>
-                    <span style={{ color: "var(--text-2)", fontSize: "18px" }}>📍</span>
+                  <div style={{ height: "110px", borderRadius: "8px", overflow: "hidden", flexShrink: 0 }}>
+                    <iframe
+                      src={loc.mapSrc}
+                      width="100%"
+                      height="110"
+                      style={{ border: 0, display: "block", filter: "invert(0.9) hue-rotate(180deg)" }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title={loc.name}
+                    />
                   </div>
                   <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)", margin: 0 }}>{loc.name}</p>
                   <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>{loc.addr}</p>
-                  <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--accent-text)", margin: 0 }}>Directions →</p>
+                  <a href={loc.directionsUrl} target="_blank" rel="noopener noreferrer" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--accent-text)", textDecoration: "none" }}>Directions →</a>
                 </div>
               ))}
             </div>
@@ -66,24 +85,24 @@ export default function Footer() {
               ))}
             </div>
             {/* Get in touch */}
-            <div style={{ flex: "1 0 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+            <div style={{ flex: "1.5 0 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
               <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--text-2)", margin: 0 }}>GET IN TOUCH</p>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <div style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <a href="https://wa.me/14165555555" style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "12px 16px", display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
-                  <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)", whiteSpace: "nowrap" }}>WhatsApp</span>
-                </div>
-                <div style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", color: "var(--text)" }}>WhatsApp</span>
+                </a>
+                <div style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "12px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/wechat.svg" alt="WeChat" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
-                  <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)", whiteSpace: "nowrap" }}>WeChat</span>
+                  <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", color: "var(--text)" }}>WeChat</span>
                 </div>
               </div>
-              <a href="mailto:hello@canadianfencingacademy.ca" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--text)", textDecoration: "none" }}>
+              <a href="mailto:hello@canadianfencingacademy.ca" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", textDecoration: "none", wordBreak: "break-all" }}>
                 hello@canadianfencingacademy.ca
               </a>
-              <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", letterSpacing: "0.18px", color: "var(--text)", margin: 0 }}>
+              <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0, whiteSpace: "nowrap" }}>
                 <a href="#" style={{ color: "inherit", textDecoration: "none" }}>Instagram</a> · <a href="#" style={{ color: "inherit", textDecoration: "none" }}>Facebook</a>
               </p>
             </div>
@@ -112,16 +131,25 @@ export default function Footer() {
         {/* 2 location cards */}
         <div style={{ display: "flex", gap: "12px", width: "100%" }}>
           {[
-            { name: "Wyecroft Rd", addr: "Unit 46 – 220 Wyecroft Rd, Oakville" },
-            { name: "Second location", addr: "Now open — Oakville" },
+            { name: "Wyecroft Rd", addr: "Unit 46 – 220 Wyecroft Rd, Oakville", mapSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed", directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8" },
+            { name: "Second location", addr: "Now open — Oakville", mapSrc: "https://maps.google.com/maps?q=Oakville,+ON&output=embed", directionsUrl: "/contact" },
           ].map((loc) => (
             <div key={loc.name} style={{ flex: "1 0 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
-              <div style={{ backgroundColor: "var(--surface-2)", height: "96px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px" }}>
-                <span style={{ color: "var(--text-2)", fontSize: "18px" }}>📍</span>
+              <div style={{ height: "96px", borderRadius: "8px", overflow: "hidden", flexShrink: 0 }}>
+                <iframe
+                  src={loc.mapSrc}
+                  width="100%"
+                  height="96"
+                  style={{ border: 0, display: "block", filter: "invert(0.9) hue-rotate(180deg)" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={loc.name}
+                />
               </div>
               <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)", margin: 0 }}>{loc.name}</p>
               <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>{loc.addr}</p>
-              <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--accent-text)", margin: 0 }}>Directions →</p>
+              <a href={loc.directionsUrl} target="_blank" rel="noopener noreferrer" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--accent-text)", textDecoration: "none" }}>Directions →</a>
             </div>
           ))}
         </div>
