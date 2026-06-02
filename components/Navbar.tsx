@@ -69,10 +69,10 @@ export default function Navbar() {
 
         {/* ── Mobile nav bar ── */}
         <div className="flex md:hidden items-center justify-between" style={{ padding: "14px 20px" }}>
-          {/* Logo — clipped to icon only on mobile (full logo is too wide) */}
-          <Link href="/" style={{ textDecoration: "none", display: "block", overflow: "hidden", width: "68px", height: "32px", flexShrink: 0 }}>
+          {/* Mobile logo — compact icon version */}
+          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/cfalogo.png" alt="Canadian Fencing Academy" style={{ height: "32px", width: "auto", display: "block" }} />
+            <img src="/cfamobilelogo.png" alt="Canadian Fencing Academy" style={{ height: "32px", width: "auto", display: "block" }} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <Link href="/register" className="btn-primary" style={{ backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "18px", padding: "10px 18px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
