@@ -111,41 +111,82 @@ export default function ContactPage() {
 
         {/* Right: contact sidebar */}
         <div
-          data-node-id="1:2165"
           style={{
             backgroundColor: "var(--surface)",
             border: "1px solid var(--border)",
             borderRadius: "12px",
-            overflow: "hidden",
             flexShrink: 0,
             width: "420px",
-            padding: "0 24px",
+            padding: "28px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0",
           }}
         >
-          {[
-            { label: "WhatsApp", value: "+1 416 555 5555", href: "https://wa.me/14165555555" },
-            { label: "Email", value: "hello@canadianfencingacademy.ca", href: "mailto:hello@canadianfencingacademy.ca" },
-            { label: "Social", value: "Instagram · Facebook", href: "#" },
-            { label: "WeChat", value: "Ask us for the QR", href: "#" },
-          ].map((row, i, arr) => (
-            <div key={row.label}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "4px", padding: "18px 0" }}>
-                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "14px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>
-                  {row.label}
-                </p>
-                <a
-                  href={row.href}
-                  className="link-hover"
-                  style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--text)", textDecoration: "none" }}
-                >
-                  {row.value}
-                </a>
-              </div>
-              {i < arr.length - 1 && (
-                <div style={{ backgroundColor: "var(--border)", height: "1px", width: "100%" }} />
-              )}
+          <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "26px", lineHeight: "32px", color: "var(--text)", margin: "0 0 24px" }}>
+            Prefer to chat?
+          </p>
+
+          {/* WhatsApp */}
+          <div style={{ paddingBottom: "20px", borderBottom: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: "6px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>WHATSAPP</p>
+            <a
+              href="https://wa.me/14165555555"
+              className="link-hover"
+              style={{ fontFamily: ss3, fontWeight: 700, fontSize: "18px", lineHeight: "26px", color: "var(--text)", textDecoration: "none" }}
+            >
+              Message us →
+            </a>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>Fastest reply</p>
+          </div>
+
+          {/* WeChat */}
+          <div style={{ padding: "20px 0", borderBottom: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>WECHAT</p>
+            {/* Placeholder QR code */}
+            <div style={{ width: "128px", height: "128px", backgroundColor: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.35">
+                <rect x="2" y="2" width="28" height="28" rx="3" stroke="#f2f0ed" strokeWidth="2.5"/>
+                <rect x="9" y="9" width="14" height="14" fill="#f2f0ed"/>
+                <rect x="50" y="2" width="28" height="28" rx="3" stroke="#f2f0ed" strokeWidth="2.5"/>
+                <rect x="57" y="9" width="14" height="14" fill="#f2f0ed"/>
+                <rect x="2" y="50" width="28" height="28" rx="3" stroke="#f2f0ed" strokeWidth="2.5"/>
+                <rect x="9" y="57" width="14" height="14" fill="#f2f0ed"/>
+                <rect x="38" y="2" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="38" y="12" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="48" y="38" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="38" y="48" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="48" y="58" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="60" y="48" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="60" y="60" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="72" y="48" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="2" y="38" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="12" y="38" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="22" y="38" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="38" y="38" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="72" y="38" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="72" y="60" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="60" y="72" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="72" y="72" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="38" y="60" width="6" height="6" fill="#f2f0ed"/>
+                <rect x="38" y="72" width="6" height="6" fill="#f2f0ed"/>
+              </svg>
             </div>
-          ))}
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>Scan to add us on WeChat</p>
+          </div>
+
+          {/* Email */}
+          <div style={{ paddingTop: "20px", display: "flex", flexDirection: "column", gap: "6px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>EMAIL</p>
+            <a
+              href="mailto:hello@canadianfencingacademy.ca"
+              className="link-hover"
+              style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "26px", color: "var(--text)", textDecoration: "none" }}
+            >
+              hello@canadianfencingacademy.ca
+            </a>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>We reply within 24 hours</p>
+          </div>
         </div>
       </div>
     </>
