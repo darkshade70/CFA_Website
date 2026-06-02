@@ -92,34 +92,53 @@ export default function OurSpacePage() {
         style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "64px" }}
       >
         {/* Info block */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "32px", maxWidth: "720px" }}>
 
-          {/* Heading + one-liner */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-              Built for fencing.
+          {/* Heading */}
+          <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+            Built for fencing.
+          </p>
+
+          {/* Paragraphs */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
+              CFA is one of Ontario&apos;s largest private fencing clubs — purpose-built, not borrowed. Our Wyecroft Rd facility runs 18 full-length pistes with electronic scoring on every strip, the same setup you&apos;d find at a provincial tournament.
             </p>
-            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "27px", color: "var(--text-2)", margin: 0, maxWidth: "560px" }}>
-              Not a gym we rent on Thursdays. A dedicated fencing club, purpose-built and open seven days a week.
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
+              We&apos;re open seven days a week across two Oakville locations, with programs for every level — from first-timers to competitive athletes. All gear is provided for beginners, so there&apos;s nothing to buy before your first session.
             </p>
           </div>
 
-          {/* Amenity grid */}
-          <div className="ourspace-amenities">
+          {/* Tags */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
             {[
-              "18 full-length competition pistes",
-              "Electronic scoring on every strip",
-              "Purpose-built sprung flooring",
-              "Loaner gear for every beginner",
-              "National-level coaching staff",
-              "Foil, épée, sabre & historical programs",
-              "Open 7 days — evenings & weekends",
-              "Two locations in Oakville",
-            ].map((item) => (
-              <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "15px 0", borderBottom: "1px solid var(--border)" }}>
-                <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "var(--accent)", flexShrink: 0 }} />
-                <span style={{ fontFamily: ss3, fontWeight: 600, fontSize: "15px", lineHeight: "22px", color: "var(--text)" }}>{item}</span>
-              </div>
+              "18 full-length pistes",
+              "Electronic scoring",
+              "Sprung flooring",
+              "Loaner gear included",
+              "Foil · Épée · Sabre · Historical",
+              "National-level coaches",
+              "Open 7 days",
+              "2 Oakville locations",
+              "Youth & adult programs",
+            ].map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  fontFamily: ss3,
+                  fontWeight: 600,
+                  fontSize: "13px",
+                  lineHeight: "18px",
+                  color: "var(--text)",
+                  backgroundColor: "var(--surface)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "6px",
+                  padding: "6px 12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {tag}
+              </span>
             ))}
           </div>
         </div>
