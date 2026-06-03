@@ -87,7 +87,7 @@ export default function OurSpacePage() {
       </section>
 
       {/* ── TEAM BANNER ── */}
-      <div style={{ width: "100%", height: "480px", overflow: "hidden", flexShrink: 0 }}>
+      <div className="coaches-banner" style={{ width: "100%", overflow: "hidden", flexShrink: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/coaches-group.jpg"

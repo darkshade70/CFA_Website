@@ -95,7 +95,7 @@ function CoachCard({ coach }: { coach: CoachDisplay }) {
       }}
     >
       {/* Coach photo */}
-      <div style={{ height: "340px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
+      <div className="coach-photo" style={{ height: "340px", flexShrink: 0, width: "100%", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={coach.imgSrc}

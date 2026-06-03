@@ -328,6 +328,9 @@ body {
 .ourspace-feature-photo { width: 568px; flex-shrink: 0; height: 400px; border-radius: 12px; overflow: hidden; }
 .ourspace-stats-grid { display: flex; flex-wrap: wrap; gap: 12px 24px; width: 100%; }
 
+/* ── Team banner (Our Space) ────────────────────────────────────────────────── */
+.coaches-banner { height: 480px; }
+
 /* ── Card grids ────────────────────────────────────────────────────────────── */
 .card-row         { display: flex; gap: 24px; width: 100%; }
 .card-row-scroll  { display: flex; gap: 14px; padding-left: 24px; padding-right: 24px; overflow-x: auto; width: 100%; scrollbar-width: none; }
@@ -557,4 +560,16 @@ body {
   /* Book a visit: stack form + sidebar on mobile */
   .visit-layout  { flex-direction: column; }
   .visit-sidebar { width: 100%; }
+
+  /* Team banner — shorter on mobile to avoid heavy side-crop */
+  .coaches-banner { height: 260px; }
+
+  /* Coach cards on coaches page — shorter photo on mobile */
+  .coaches-grid .coach-photo { height: 240px !important; }
+
+  /* Programs "Book assessment" secondary button — white text on dark mobile bg */
+  .programs-class-card .btn-secondary {
+    color: var(--text) !important;
+    border-color: var(--border-strong) !important;
+  }
 }
