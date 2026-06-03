@@ -39,25 +39,24 @@ const PAGES = [
 export default function TestimonialsCarousel({ googleReviewsUrl }: { googleReviewsUrl: string }) {
   const [page, setPage] = useState(0);
 
-  const prev = () => setPage((p) => Math.max(0, p - 1));
-  const next = () => setPage((p) => Math.min(PAGES.length - 1, p + 1));
+  const prev = () => setPage((p) => (p - 1 + PAGES.length) % PAGES.length);
+  const next = () => setPage((p) => (p + 1) % PAGES.length);
 
-  const arrowStyle = (disabled: boolean): CSSProperties => ({
+  const arrowStyle: CSSProperties = {
     width: "40px",
     height: "40px",
     flexShrink: 0,
     borderRadius: "50%",
     border: "1px solid var(--border-strong)",
-    backgroundColor: disabled ? "transparent" : "var(--surface-2)",
-    color: disabled ? "var(--text-2)" : "var(--text)",
-    cursor: disabled ? "not-allowed" : "pointer",
+    backgroundColor: "var(--surface-2)",
+    color: "var(--text)",
+    cursor: "pointer",
     fontSize: "18px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    opacity: disabled ? 0.35 : 1,
     transition: "opacity 0.15s",
-  });
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "40px", width: "100%" }}>
@@ -81,7 +80,7 @@ export default function TestimonialsCarousel({ googleReviewsUrl }: { googleRevie
       {/* Cards + flanking arrows */}
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
         {/* Prev arrow */}
-        <button onClick={prev} disabled={page === 0} aria-label="Previous reviews" style={arrowStyle(page === 0)}>
+        <button onClick={prev} aria-label="Previous reviews" style={arrowStyle}>
           ←
         </button>
 
@@ -120,7 +119,7 @@ export default function TestimonialsCarousel({ googleReviewsUrl }: { googleRevie
         </div>
 
         {/* Next arrow */}
-        <button onClick={next} disabled={page === PAGES.length - 1} aria-label="Next reviews" style={arrowStyle(page === PAGES.length - 1)}>
+        <button onClick={next} aria-label="Next reviews" style={arrowStyle}>
           →
         </button>
       </div>
