@@ -46,7 +46,7 @@ const COACHES = [
     role: "Coach",
     bio: "Ethan combines competitive experience with a natural ability to teach. He works with youth and adult fencers alike, focusing on fundamentals and game sense.",
     img: "/coach-ethan.png",
-    imgPos: "center 33%",   // cap adds height — shift image up significantly
+    imgPos: "center 10%",   // show full head including cap
   },
 ];
 
@@ -109,21 +109,11 @@ export default function CoachesPage() {
         </p>
       </div>
 
-      {/* ── Group photo banner ── */}
-      <div style={{ width: "100%", height: "420px", overflow: "hidden", flexShrink: 0 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/coaches-group.jpg"
-          alt="The CFA coaching team"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
-        />
-      </div>
-
       {/* ── Coach grid — CSS grid: 3-col desktop, 1-col mobile ── */}
       <div
         data-node-id="1:1972"
         className="page-px"
-        style={{ backgroundColor: "var(--bg)", paddingTop: "56px", paddingBottom: "80px", width: "100%" }}
+        style={{ backgroundColor: "var(--bg)", paddingTop: "24px", paddingBottom: "80px", width: "100%" }}
       >
         <div className="coaches-grid">
           {COACHES.map((coach) => <CoachCard key={coach.name} coach={coach} />)}
