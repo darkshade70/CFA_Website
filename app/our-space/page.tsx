@@ -86,6 +86,16 @@ export default function OurSpacePage() {
         </div>
       </section>
 
+      {/* ── TEAM BANNER ── */}
+      <div style={{ width: "100%", height: "480px", overflow: "hidden", flexShrink: 0 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/coaches-group.jpg"
+          alt="The CFA coaching team"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
+        />
+      </div>
+
       {/* ── FACILITY INFO + GALLERY ── */}
       <section
         className="page-px"
