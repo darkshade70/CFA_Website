@@ -396,6 +396,7 @@ export default async function ProgramPage({
         <ProgramCards
           classes={prog.classes}
           imgs={classImgs}
+          slug={slug}
         />
       </section>
 

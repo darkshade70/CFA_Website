@@ -19,9 +19,36 @@ interface ClassData {
 interface Props {
   classes: ClassData[];
   imgs: string[];
+  slug?: string; // program slug — used to pre-fill the register form
 }
 
-export default function ProgramCards({ classes, imgs }: Props) {
+const SLUG_TO_WHICH: Record<string, string> = {
+  foil: "Foil",
+  epee: "Épée",
+  sabre: "Sabre",
+  historical: "Historical",
+};
+
+// Derive age-group program from class name
+function inferProgram(className: string): string {
+  const lower = className.toLowerCase();
+  if (lower.includes("youth")) return "Youth programs";
+  if (lower.includes("adult")) return "Adult programs";
+  if (lower.includes("historical") || lower.includes("hema")) return "Historical / HEMA";
+  return "";
+}
+
+function registerHref(slug: string | undefined, className: string): string {
+  const which = slug ? SLUG_TO_WHICH[slug] : "";
+  const program = inferProgram(className);
+  const params = new URLSearchParams();
+  if (which) params.set("which", which);
+  if (program) params.set("program", program);
+  params.set("class", className);
+  return `/register?${params.toString()}`;
+}
+
+export default function ProgramCards({ classes, imgs, slug }: Props) {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
   const toggle = (idx: number) =>
@@ -64,7 +91,7 @@ export default function ProgramCards({ classes, imgs }: Props) {
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "flex-start" }}>
             <Link
-              href="/register"
+              href={registerHref(slug, cls.name)}
               className="btn-primary"
               style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--accent)", color: "var(--on-accent)", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", padding: "15px 26px", borderRadius: "10px", textDecoration: "none" }}
             >
@@ -146,7 +173,7 @@ export default function ProgramCards({ classes, imgs }: Props) {
                   {cls.price} · {cls.period}
                 </p>
                 <Link
-                  href="/register"
+                  href={registerHref(slug, cls.name)}
                   onClick={(e) => e.stopPropagation()}
                   className={cls.ctaType === "primary" ? "btn-primary" : "btn-secondary"}
                   style={{
