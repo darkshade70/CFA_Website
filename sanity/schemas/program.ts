@@ -40,6 +40,12 @@ export const program = {
       of: [{ type: "block" }],
     },
     {
+      name: "ctaHeading",
+      title: "CTA Section Heading",
+      type: "string",
+      description: "Heading shown in the red CTA banner at the bottom, e.g. \"Not sure where to start?\"",
+    },
+    {
       name: "classes",
       title: "Classes / Pricing Tiers",
       type: "array",
@@ -48,10 +54,17 @@ export const program = {
           type: "object",
           fields: [
             { name: "name", title: "Class Name", type: "string" },
+            { name: "desc", title: "Short Description", type: "string" },
             { name: "level", title: "Level (e.g. Youth, Adult)", type: "string" },
             { name: "price", title: "Price", type: "string" },
             { name: "period", title: "Period (e.g. /month, 8-week course)", type: "string" },
             { name: "image", title: "Image", type: "image", options: { hotspot: true } },
+            {
+              name: "featured",
+              title: "Featured (highlight this card)",
+              type: "boolean",
+              initialValue: false,
+            },
             {
               name: "features",
               title: "Features",

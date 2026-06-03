@@ -29,7 +29,19 @@ export const programBySlugQuery = `*[_type == "program" && slug.current == $slug
   heroImage,
   whatIsIt,
   description,
-  classes
+  ctaHeading,
+  classes[] {
+    name,
+    desc,
+    level,
+    price,
+    period,
+    image,
+    featured,
+    features,
+    ctaLabel,
+    ctaType
+  }
 }`;
 
 export const coachesQuery = `*[_type == "coach"] | order(order asc) {
@@ -37,7 +49,8 @@ export const coachesQuery = `*[_type == "coach"] | order(order asc) {
   name,
   role,
   photo,
-  bio
+  bio,
+  imgPos
 }`;
 
 export const testimonialsQuery = `*[_type == "testimonial"][0...6] {

@@ -2,11 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProgramCards from "@/components/ProgramCards";
+import { client, urlFor, programBySlugQuery } from "@/lib/sanity";
 
 const ss3 = "'Source Sans 3', sans-serif";
 
-// ── Hero images per discipline (local assets) ─────────────────────────────────
-const HERO_IMAGES = {
+// ── Hero images per discipline (local assets, used as fallback) ───────────────
+const HERO_IMAGES: Record<string, string> = {
   foil:       "/fencing1.jpg",
   epee:       "/fencing2.webp",
   sabre:      "/fencing3.jpg",
@@ -26,30 +27,28 @@ const ALL_STOCK = [
   "/fencing9.webp",
   "/fencing10.avif",
 ];
-const CLASS_IMAGES: Record<string, string[]> = {
-  foil:       ALL_STOCK,
-  epee:       ALL_STOCK,
-  sabre:      ALL_STOCK,
-  historical: ALL_STOCK,
+
+// ── Hardcoded program data — fallback when Sanity has no content yet ──────────
+type ClassData = {
+  name: string;
+  desc: string;
+  price: string;
+  period: string;
+  features: string[];
+  featured?: boolean;
+  ctaLabel: string;
+  ctaType: "primary" | "secondary";
 };
 
-// ── Program data (Figma node 1:1718 for Foil) ────────────────────────────────
-const PROGRAMS: Record<string, {
+type ProgramData = {
   name: string;
   tagline: string;
   whatIsIt: [string, string];
   ctaHeading: string;
-  classes: {
-    name: string;
-    desc: string;
-    price: string;
-    period: string;
-    features: string[];
-    featured?: boolean;
-    ctaLabel: string;
-    ctaType: "primary" | "secondary";
-  }[];
-}> = {
+  classes: ClassData[];
+};
+
+const PROGRAMS: Record<string, ProgramData> = {
   foil: {
     name: "Foil",
     tagline: "Precision. Timing. Control.",
@@ -188,8 +187,12 @@ const PROGRAMS: Record<string, {
   },
 };
 
+// Known slugs for static generation (always include hardcoded; Sanity additions are dynamic)
+const KNOWN_SLUGS = Object.keys(PROGRAMS);
+
 export async function generateStaticParams() {
-  return Object.keys(PROGRAMS).map((slug) => ({ slug }));
+  // Include hardcoded slugs; if Sanity has extra, Next.js will handle them at request time
+  return KNOWN_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -198,9 +201,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const prog = PROGRAMS[slug];
-  if (!prog) return {};
-  return { title: `${prog.name} Fencing` };
+  const fallback = PROGRAMS[slug];
+
+  try {
+    const prog = await client.fetch(programBySlugQuery, { slug });
+    if (prog?.name) return { title: `${prog.name} Fencing` };
+  } catch {}
+
+  if (fallback) return { title: `${fallback.name} Fencing` };
+  return {};
 }
 
 export default async function ProgramPage({
@@ -209,7 +218,65 @@ export default async function ProgramPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const prog = PROGRAMS[slug];
+
+  // Try Sanity first
+  let prog: ProgramData | null = null;
+  let heroImgSrc: string = HERO_IMAGES[slug] ?? HERO_IMAGES.foil;
+  let classImgs: string[] = ALL_STOCK;
+
+  try {
+    const sanityProg = await client.fetch(programBySlugQuery, { slug });
+
+    if (sanityProg?._id) {
+      // Build whatIsIt: Sanity stores it as a single text block; split on double-newline or use as one para
+      const rawWhat: string = sanityProg.whatIsIt ?? "";
+      const parts = rawWhat.split(/\n\n+/).filter(Boolean);
+      const whatIsIt: [string, string] = parts.length >= 2
+        ? [parts[0], parts.slice(1).join("\n\n")]
+        : [rawWhat, ""];
+
+      // Hero image: prefer Sanity asset, fall back to local
+      if (sanityProg.heroImage) {
+        heroImgSrc = urlFor(sanityProg.heroImage).width(1600).height(700).fit("crop").url();
+      }
+
+      // Classes: map Sanity classes to our format; images from Sanity or stock fallback
+      const mappedClasses: ClassData[] = (sanityProg.classes ?? []).map((c: any, i: number) => ({
+        name: c.name ?? "",
+        desc: c.desc ?? c.level ?? "",
+        price: c.price ?? "",
+        period: c.period ?? "",
+        features: c.features ?? [],
+        featured: c.featured ?? false,
+        ctaLabel: c.ctaLabel ?? "Register Now →",
+        ctaType: (c.ctaType === "primary" ? "primary" : "secondary") as "primary" | "secondary",
+      }));
+
+      // Class images: if Sanity classes have images use those, otherwise stock
+      const hasClassImgs = (sanityProg.classes ?? []).some((c: any) => c.image);
+      if (hasClassImgs) {
+        classImgs = (sanityProg.classes ?? []).map((c: any) =>
+          c.image ? urlFor(c.image).width(600).height(400).fit("crop").url() : ALL_STOCK[0]
+        );
+      }
+
+      prog = {
+        name: sanityProg.name,
+        tagline: sanityProg.tagline ?? "",
+        whatIsIt,
+        ctaHeading: sanityProg.ctaHeading ?? "Ready to start?",
+        classes: mappedClasses,
+      };
+    }
+  } catch (err) {
+    console.error("Sanity fetch failed for program:", slug, err);
+  }
+
+  // Fall back to hardcoded
+  if (!prog) {
+    prog = PROGRAMS[slug] ?? null;
+  }
+
   if (!prog) notFound();
 
   return (
@@ -232,7 +299,7 @@ export default async function ProgramPage({
         {/* Hero background — fencing action photo per discipline */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={HERO_IMAGES[slug as keyof typeof HERO_IMAGES] ?? HERO_IMAGES.foil}
+          src={heroImgSrc}
           alt=""
           aria-hidden
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
@@ -274,7 +341,7 @@ export default async function ProgramPage({
           <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "36px", lineHeight: "39px", letterSpacing: "-0.18px", color: "var(--text)", margin: 0 }}>
             What is {prog.name.toLowerCase()}?
           </p>
-          {prog.whatIsIt.map((para, i) => (
+          {prog.whatIsIt.filter(Boolean).map((para, i) => (
             <p key={i} style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--text-2)", margin: 0 }}>
               {para}
             </p>
@@ -296,7 +363,7 @@ export default async function ProgramPage({
         <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "28px", lineHeight: "34px", color: "var(--text)", margin: 0 }}>
           What is {prog.name.toLowerCase()}?
         </p>
-        {prog.whatIsIt.map((para, i) => (
+        {prog.whatIsIt.filter(Boolean).map((para, i) => (
           <p key={i} style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--text-2)", margin: 0 }}>
             {para}
           </p>
@@ -328,7 +395,7 @@ export default async function ProgramPage({
 
         <ProgramCards
           classes={prog.classes}
-          imgs={CLASS_IMAGES[slug] ?? CLASS_IMAGES.foil}
+          imgs={classImgs}
         />
       </section>
 

@@ -27,6 +27,13 @@ export const coach = {
       rows: 4,
     },
     {
+      name: "imgPos",
+      title: "Image Position (CSS)",
+      type: "string",
+      description: "CSS object-position for face alignment, e.g. \"center 15%\" or \"center top\". Leave blank to use the default.",
+      initialValue: "center top",
+    },
+    {
       name: "order",
       title: "Sort Order",
       type: "number",
