@@ -74,7 +74,7 @@ export default function BeginnersPage() {
         <div
           style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to top, rgba(12,11,11,0.92) 0%, rgba(12,11,11,0.55) 50%, rgba(12,11,11,0.25) 100%)",
+            background: "linear-gradient(to right, rgba(12,11,11,0.88) 0%, rgba(12,11,11,0.72) 55%, rgba(12,11,11,0.35) 100%)",
           }}
         />
         <div className="hero-text-block">
@@ -84,7 +84,7 @@ export default function BeginnersPage() {
           <p className="h-display" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
             Beginners
           </p>
-          <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
+          <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", color: "var(--text)", margin: 0 }}>
             No experience needed. No gear. No idea what weapon to pick. That&apos;s fine — we&apos;ve got you.
           </p>
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>

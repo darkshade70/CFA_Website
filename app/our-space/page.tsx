@@ -108,10 +108,10 @@ export default function OurSpacePage() {
           </p>
           <div className="ourspace-facility-row">
             <p style={{ flex: "1 1 0", fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
-              CFA is one of Ontario&apos;s largest dedicated fencing facilities — purpose-built, not a gym we rent two nights a week. Our Wyecroft Rd location has 18 full-length pistes with electronic scoring on every strip, high ceilings, proper rubber flooring, and tournament-grade equipment throughout. It&apos;s the same setup you&apos;d compete on at a provincial or national event.
+              Most clubs book gym time wherever they can get it. We own our space. The Wyecroft Rd facility has 18 full-length pistes, electronic scoring on every strip, proper rubber flooring, and ceilings high enough to actually move. It&apos;s the same setup you&apos;d find at a provincial tournament — because we didn&apos;t see a reason to train on anything less.
             </p>
             <p style={{ flex: "1 1 0", fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
-              All beginner gear is provided — masks, jackets, gloves, and weapons — so you can show up and fence on day one. We run structured programs seven days a week across two Oakville locations, from introductory classes through to elite competitive training. Our athletes compete at the provincial and national level, coached by staff who&apos;ve built careers around the sport.
+              Open seven days across two Oakville locations. If you&apos;re new, all gear is provided — mask, jacket, gloves, weapon — nothing to buy before you try it. If you&apos;ve been fencing for years, or want to compete, we run programs at every level. Some of our athletes train for nationals.
             </p>
           </div>
         </div>

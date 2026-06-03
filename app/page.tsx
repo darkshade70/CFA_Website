@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 
 // ── Local image assets (public/ directory) ───────────────────────────────────
 const STOCK = {
@@ -48,45 +49,27 @@ const COACHES = [
     name: "Alice Lu",
     role: "President & head coach",
     bio: "25+ years of fencing, 15+ building CFA into one of Ontario's largest clubs.",
-    img: STOCK.coach1,
+    img: "/coach-alice.png",
+    imgPos: "center 20%",
   },
   {
     name: "Brily Lepine",
     role: "Foil & historical coach",
     bio: "Fencing since the early '90s across weapons and styles.",
-    img: STOCK.coach2,
+    img: "/coach-brily.png",
+    imgPos: "center 20%",
   },
   {
-    name: "Kyle Foster & Lisa Huzel",
-    role: "Owners",
-    bio: "Veteran competitors. Lisa sits on the FIE Medical Commission — fencing's safety body.",
-    img: STOCK.coach3,
+    name: "Kyle Foster",
+    role: "Owner & veteran fencer",
+    bio: "Active veteran competitor who runs the club operations and programming.",
+    img: "/coach-kyle.png",
+    imgPos: "center 20%",
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    stars: 5,
-    quote:
-      "My daughter started two years ago and the change has been remarkable. The coaches genuinely care.",
-    name: "Sarah K.",
-    detail: "Parent · youth foil",
-  },
-  {
-    stars: 5,
-    quote:
-      "I came in at 34 with zero experience. Six months later I fenced my first tournament.",
-    name: "James T.",
-    detail: "Adult épée",
-  },
-  {
-    stars: 5,
-    quote:
-      "Best facility and coaching I've trained at — and I've fenced for fifteen years.",
-    name: "Priya M.",
-    detail: "Competitive sabre",
-  },
-];
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/search?sca_esv=aa74034db299556c&sxsrf=ANbL-n4_KFmTJYo7cQLPaK_AG2Q9ydn9DA:1780328026715&si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x6WaS1PIM8aaYnLcqFV8ZoVYbQCh0N8Wm42XbcACcBLMIa5EOiIA4u1YyAjQ-Q_NGjn3ayCm6dqFMb3iklBUnNmOTo0sQgMZEC-x-lHnnGz-4oQJyA%3D%3D&q=Canadian+Fencing+Academy+Reviews&sa=X&ved=2ahUKEwi7yPbcruaUAxV3GoYAHbsZNLAQ0bkNegQIHxAH&biw=1710&bih=981&dpr=2";
 
 const FAQS = [
   [
@@ -423,7 +406,7 @@ export default function HomePage() {
               {/* Coach photo */}
               <div style={{ height: "260px", flexShrink: 0, overflow: "hidden" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={coach.img} alt={coach.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <img src={coach.img} alt={coach.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: (coach as any).imgPos ?? "center top", display: "block" }} />
               </div>
               {/* Card body */}
               <div
@@ -476,101 +459,13 @@ export default function HomePage() {
       {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
       <section
         data-node-id="1:1673"
-        className="testimonials-section page-px page-py-88"
+        className="page-px page-py-88"
         style={{
           backgroundColor: "var(--surface)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "40px",
           width: "100%",
         }}
       >
-        <div className="testimonials-header" style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <p
-            className="h-section"
-            style={{
-              fontFamily: ss3,
-              fontWeight: 700,
-              color: "var(--text)",
-            }}
-          >
-            Testimonials
-          </p>
-          <a
-            href="https://www.google.com/search?sca_esv=aa74034db299556c&sxsrf=ANbL-n4_KFmTJYo7cQLPaK_AG2Q9ydn9DA:1780328026715&si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_x6WaS1PIM8aaYnLcqFV8ZoVYbQCh0N8Wm42XbcACcBLMIa5EOiIA4u1YyAjQ-Q_NGjn3ayCm6dqFMb3iklBUnNmOTo0sQgMZEC-x-lHnnGz-4oQJyA%3D%3D&q=Canadian+Fencing+Academy+Reviews&sa=X&ved=2ahUKEwi7yPbcruaUAxV3GoYAHbsZNLAQ0bkNegQIHxAH&biw=1710&bih=981&dpr=2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-hover"
-            style={{
-              fontFamily: ss3,
-              fontWeight: 700,
-              fontSize: "16px",
-              lineHeight: "22px",
-              color: "var(--accent-text)",
-              textDecoration: "none",
-            }}
-          >
-            View our Google Reviews →
-          </a>
-        </div>
-
-        <div className="testimonials-row">
-          {TESTIMONIALS.map((t) => (
-            <div
-              key={t.name}
-              className="testimonial-card"
-              style={{
-                backgroundColor: "var(--surface-2)",
-                border: "1px solid var(--border)",
-                borderRadius: "12px",
-                padding: "26px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "16px",
-              }}
-            >
-              <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", color: "var(--accent-text)" }}>
-                {"★".repeat(t.stars)}
-              </p>
-              <p
-                style={{
-                  fontFamily: ss3,
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "27px",
-                  color: "var(--text)",
-                  flexGrow: 1,
-                }}
-              >
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
-                <p
-                  style={{
-                    fontFamily: ss3,
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    lineHeight: "22px",
-                    color: "var(--text)",
-                  }}
-                >
-                  {t.name}
-                </p>
-                <p
-                  style={{
-                    fontFamily: ss3,
-                    fontWeight: 400,
-                    fontSize: "14px",
-                    lineHeight: "20px",
-                    color: "var(--text-2)",
-                  }}
-                >
-                  {t.detail}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <TestimonialsCarousel googleReviewsUrl={GOOGLE_REVIEWS_URL} />
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
