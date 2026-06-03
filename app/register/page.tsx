@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import WeChatQR from "@/components/WeChatQR";
 
 const ss3 = "'Source Sans 3', sans-serif";
 
@@ -44,10 +45,28 @@ export default function RegisterPage() {
     comments: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message ?? "Failed to send. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,15 +76,8 @@ export default function RegisterPage() {
 
       {/* ── Header ── */}
       <div
-        data-node-id="1:2240"
         className="page-header-sm"
-        style={{
-          backgroundColor: "var(--bg)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
-          width: "100%",
-        }}
+        style={{ backgroundColor: "var(--bg)", display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}
       >
         <p className="h-display" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
           Register now
@@ -75,16 +87,10 @@ export default function RegisterPage() {
         </p>
       </div>
 
-      {/* ── Content — register-row handles flex → column on mobile ── */}
+      {/* ── Content ── */}
       <div
-        data-node-id="1:2243"
         className="page-px register-row"
-        style={{
-          backgroundColor: "var(--bg)",
-          paddingTop: "24px",
-          paddingBottom: "80px",
-          width: "100%",
-        }}
+        style={{ backgroundColor: "var(--bg)", paddingTop: "24px", paddingBottom: "80px", width: "100%" }}
       >
         {/* ── Form column ── */}
         <div style={{ flex: "1 0 0", minWidth: 0 }}>
@@ -98,7 +104,6 @@ export default function RegisterPage() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "16px",
-                alignItems: "flex-start",
               }}
             >
               <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "36px", lineHeight: "39px", color: "var(--text)", margin: 0 }}>
@@ -109,11 +114,8 @@ export default function RegisterPage() {
               </p>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              style={{ display: "flex", flexDirection: "column", gap: "18px" }}
-            >
-              {/* Name + Phone row */}
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+              {/* Name + Phone */}
               <div className="form-row" style={{ gap: "14px" }}>
                 <div style={{ flex: "1 0 0", minWidth: 0 }}>
                   <label style={labelStyle}>Full name</label>
@@ -151,7 +153,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              {/* Program + Which row */}
+              {/* Program + Which */}
               <div className="form-row" style={{ gap: "14px" }}>
                 <div style={{ flex: "1 0 0", minWidth: 0 }}>
                   <label style={labelStyle}>What program are you interested in?</label>
@@ -199,12 +201,20 @@ export default function RegisterPage() {
                 />
               </div>
 
+              {/* Error message */}
+              {error && (
+                <p style={{ fontFamily: ss3, fontSize: "14px", lineHeight: "20px", color: "#c0392b", margin: 0 }}>
+                  {error}
+                </p>
+              )}
+
               {/* Submit */}
               <button
                 type="submit"
+                disabled={loading}
                 className="btn-primary"
                 style={{
-                  backgroundColor: "var(--accent)",
+                  backgroundColor: loading ? "var(--border)" : "var(--accent)",
                   color: "var(--on-accent)",
                   fontFamily: ss3,
                   fontWeight: 700,
@@ -213,11 +223,12 @@ export default function RegisterPage() {
                   padding: "15px 26px",
                   borderRadius: "10px",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: loading ? "not-allowed" : "pointer",
                   width: "100%",
+                  transition: "background-color 0.15s",
                 }}
               >
-                Send &amp; register interest →
+                {loading ? "Sending…" : "Send & register interest →"}
               </button>
 
               <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>
@@ -227,9 +238,8 @@ export default function RegisterPage() {
           )}
         </div>
 
-        {/* ── Sidebar (node 1:2280) ── */}
+        {/* ── Sidebar ── */}
         <div
-          data-node-id="1:2280"
           style={{
             backgroundColor: "var(--surface)",
             border: "1px solid var(--border)",
@@ -240,26 +250,37 @@ export default function RegisterPage() {
             padding: "26px",
             display: "flex",
             flexDirection: "column",
-            gap: "14px",
+            gap: "0",
           }}
         >
-          <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--text)", margin: 0 }}>
+          <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "24px", lineHeight: "32px", color: "var(--text)", margin: "0 0 20px" }}>
             Prefer to chat?
           </p>
-          {[
-            { label: "WhatsApp", detail: "Fastest reply" },
-            { label: "WeChat", detail: "Ask us for the QR" },
-            { label: "Email", detail: "hello@canadianfencingacademy.ca" },
-          ].map((row) => (
-            <div key={row.label} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-              <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent-text)", margin: 0 }}>
-                {row.label}
-              </p>
-              <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0 }}>
-                {row.detail}
-              </p>
-            </div>
-          ))}
+
+          {/* WhatsApp */}
+          <div style={{ paddingBottom: "18px", borderBottom: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: "4px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>WHATSAPP</p>
+            <a href="https://wa.me/14165555555" style={{ fontFamily: ss3, fontWeight: 700, fontSize: "17px", lineHeight: "24px", color: "var(--text)", textDecoration: "none" }}>
+              Message us →
+            </a>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "13px", lineHeight: "18px", color: "var(--text-2)", margin: 0 }}>Fastest reply</p>
+          </div>
+
+          {/* WeChat */}
+          <div style={{ padding: "18px 0", borderBottom: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: "10px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>WECHAT</p>
+            <WeChatQR size={120} />
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "13px", lineHeight: "18px", color: "var(--text-2)", margin: 0 }}>Scan to add us on WeChat</p>
+          </div>
+
+          {/* Email */}
+          <div style={{ paddingTop: "18px", display: "flex", flexDirection: "column", gap: "4px" }}>
+            <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>EMAIL</p>
+            <a href="mailto:hello@canadianfencingacademy.ca" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "15px", lineHeight: "22px", color: "var(--text)", textDecoration: "none" }}>
+              hello@canadianfencingacademy.ca
+            </a>
+            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "13px", lineHeight: "18px", color: "var(--text-2)", margin: 0 }}>We reply within 24 hours</p>
+          </div>
         </div>
       </div>
     </>

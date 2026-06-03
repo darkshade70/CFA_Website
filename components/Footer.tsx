@@ -26,14 +26,14 @@ export default function Footer() {
               {[
                 {
                   name: "Wyecroft Rd",
-                  addr: "Unit 46 – 220 Wyecroft Rd, Oakville",
-                  mapSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed",
-                  directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8",
+                  addr: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8",
+                  mapSrc: "https://maps.google.com/maps?q=Unit+46,+220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&t=&z=15&ie=UTF8&iwloc=&output=embed",
+                  directionsUrl: "https://www.google.com/maps/dir//Unit+46,+220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8",
                 },
                 {
                   name: "Second location",
-                  addr: "Now open — Oakville",
-                  mapSrc: "https://maps.google.com/maps?q=208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1&output=embed",
+                  addr: "Now open in Oakville — full address coming soon",
+                  mapSrc: "https://maps.google.com/maps?q=Oakville,+ON&t=&z=13&ie=UTF8&iwloc=&output=embed",
                   directionsUrl: "/contact",
                 },
               ].map((loc) => (
@@ -131,8 +131,8 @@ export default function Footer() {
         {/* 2 location cards */}
         <div style={{ display: "flex", gap: "12px", width: "100%" }}>
           {[
-            { name: "Wyecroft Rd", addr: "Unit 46 – 220 Wyecroft Rd, Oakville", mapSrc: "https://maps.google.com/maps?q=220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&output=embed", directionsUrl: "https://www.google.com/maps/dir//220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8" },
-            { name: "Second location", addr: "Now open — Oakville", mapSrc: "https://maps.google.com/maps?q=208+Wyecroft+Rd,+Oakville,+ON+L6K+3V1&output=embed", directionsUrl: "/contact" },
+            { name: "Wyecroft Rd", addr: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8", mapSrc: "https://maps.google.com/maps?q=Unit+46,+220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8&t=&z=15&ie=UTF8&iwloc=&output=embed", directionsUrl: "https://www.google.com/maps/dir//Unit+46,+220+Wyecroft+Rd,+Oakville,+ON+L6K+3T8" },
+            { name: "Second location", addr: "Now open in Oakville — full address coming soon", mapSrc: "https://maps.google.com/maps?q=Oakville,+ON&t=&z=13&ie=UTF8&iwloc=&output=embed", directionsUrl: "/contact" },
           ].map((loc) => (
             <div key={loc.name} style={{ flex: "1 0 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
               <div style={{ height: "96px", borderRadius: "8px", overflow: "hidden", flexShrink: 0 }}>
