@@ -138,7 +138,7 @@ export default function HomePage() {
           src={STOCK.hero}
           alt=""
           aria-hidden
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 35%" }}
         />
         {/* Gradient overlay */}
         <div
