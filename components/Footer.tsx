@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WeChatQR from "./WeChatQR";
 
 const ss3 = "'Source Sans 3', sans-serif";
 
@@ -93,10 +94,14 @@ export default function Footer() {
                   <img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
                   <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", color: "var(--text)" }}>WhatsApp</span>
                 </a>
-                <div style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "12px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/wechat.svg" alt="WeChat" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
-                  <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", color: "var(--text)" }}>WeChat</span>
+                <div style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "12px 16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/wechat.svg" alt="WeChat" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
+                    <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", color: "var(--text)" }}>WeChat</span>
+                  </div>
+                  <WeChatQR size={112} />
+                  <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "12px", lineHeight: "16px", color: "var(--text-2)", margin: 0 }}>Scan to add us on WeChat</p>
                 </div>
               </div>
               <a href="mailto:hello@canadianfencingacademy.ca" style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", textDecoration: "none", wordBreak: "break-all" }}>
@@ -195,10 +200,14 @@ export default function Footer() {
               <img src="/whatsapp.svg" alt="WhatsApp" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
               <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)" }}>WhatsApp</span>
             </a>
-            <div style={{ flex: "1 0 0", backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/wechat.svg" alt="WeChat" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
-              <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)" }}>WeChat</span>
+            <div style={{ flex: "1 0 0", backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/wechat.svg" alt="WeChat" style={{ width: "20px", height: "20px", flexShrink: 0 }} />
+                <span style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--text)" }}>WeChat</span>
+              </div>
+              <WeChatQR size={100} />
+              <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "12px", lineHeight: "16px", color: "var(--text-2)", margin: 0 }}>Scan to add us</p>
             </div>
           </div>
           <div style={{ backgroundColor: "var(--surface-2)", borderRadius: "10px", padding: "13px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
