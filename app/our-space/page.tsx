@@ -91,54 +91,18 @@ export default function OurSpacePage() {
         className="page-px"
         style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "64px" }}
       >
-        {/* Info block — two column: copy left, tags right */}
-        <div className="ourspace-facility-row" style={{ alignItems: "flex-start" }}>
-
-          {/* Left — heading + paragraphs */}
-          <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
-            <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-              Built for fencing.
-            </p>
-            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
+        {/* Info block — heading + two paragraphs side by side */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+            Built for fencing.
+          </p>
+          <div className="ourspace-facility-row">
+            <p style={{ flex: "1 1 0", fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
               CFA is one of Ontario&apos;s largest private fencing clubs — purpose-built, not borrowed. Our Wyecroft Rd facility runs 18 full-length pistes with electronic scoring on every strip, the same setup you&apos;d find at a provincial tournament.
             </p>
-            <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
+            <p style={{ flex: "1 1 0", fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
               We&apos;re open seven days a week across two Oakville locations, with programs for every level — from first-timers to competitive athletes. All gear is provided for beginners, so there&apos;s nothing to buy before your first session.
             </p>
-          </div>
-
-          {/* Right — tags */}
-          <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexWrap: "wrap", alignContent: "flex-start", gap: "10px", paddingTop: "8px" }}>
-            {[
-              "18 full-length pistes",
-              "Electronic scoring",
-              "Sprung flooring",
-              "Loaner gear included",
-              "Foil · Épée · Sabre · Historical",
-              "National-level coaches",
-              "Open 7 days",
-              "2 Oakville locations",
-              "Youth & adult programs",
-              "Year-round programming",
-            ].map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  fontFamily: ss3,
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "var(--text)",
-                  backgroundColor: "var(--surface)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  padding: "8px 16px",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {tag}
-              </span>
-            ))}
           </div>
         </div>
 
