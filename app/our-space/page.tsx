@@ -91,16 +91,14 @@ export default function OurSpacePage() {
         className="page-px"
         style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "64px" }}
       >
-        {/* Info block */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "32px", maxWidth: "720px" }}>
+        {/* Info block — two column: copy left, tags right */}
+        <div className="ourspace-facility-row" style={{ alignItems: "flex-start" }}>
 
-          {/* Heading */}
-          <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-            Built for fencing.
-          </p>
-
-          {/* Paragraphs */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* Left — heading + paragraphs */}
+          <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
+            <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+              Built for fencing.
+            </p>
             <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "28px", color: "var(--text-2)", margin: 0 }}>
               CFA is one of Ontario&apos;s largest private fencing clubs — purpose-built, not borrowed. Our Wyecroft Rd facility runs 18 full-length pistes with electronic scoring on every strip, the same setup you&apos;d find at a provincial tournament.
             </p>
@@ -109,8 +107,8 @@ export default function OurSpacePage() {
             </p>
           </div>
 
-          {/* Tags */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          {/* Right — tags */}
+          <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexWrap: "wrap", alignContent: "flex-start", gap: "10px", paddingTop: "8px" }}>
             {[
               "18 full-length pistes",
               "Electronic scoring",
@@ -121,19 +119,20 @@ export default function OurSpacePage() {
               "Open 7 days",
               "2 Oakville locations",
               "Youth & adult programs",
+              "Year-round programming",
             ].map((tag) => (
               <span
                 key={tag}
                 style={{
                   fontFamily: ss3,
                   fontWeight: 600,
-                  fontSize: "13px",
-                  lineHeight: "18px",
+                  fontSize: "14px",
+                  lineHeight: "20px",
                   color: "var(--text)",
                   backgroundColor: "var(--surface)",
                   border: "1px solid var(--border)",
-                  borderRadius: "6px",
-                  padding: "6px 12px",
+                  borderRadius: "8px",
+                  padding: "8px 16px",
                   whiteSpace: "nowrap",
                 }}
               >

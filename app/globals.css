@@ -214,6 +214,14 @@ body {
   border-left: none;
 }
 
+/* Facility info row — copy left, tags right */
+.ourspace-facility-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  width: 100%;
+}
+
 /* Facility highlights — 4 equal columns */
 .ourspace-highlights {
   display: flex;
@@ -455,6 +463,9 @@ body {
   .ourspace-stats-strip { flex-wrap: wrap; }
   .ourspace-stat { flex: 0 0 50%; padding: 20px 0 0 0; border-left: none; border-top: 1px solid var(--border); }
   .ourspace-stat:nth-child(-n+2) { border-top: none; padding-top: 0; }
+
+  /* Facility info row → stack on mobile */
+  .ourspace-facility-row { flex-direction: column; gap: 36px; }
 
   /* Facility highlights → 2-col on mobile */
   .ourspace-highlights { flex-wrap: wrap; gap: 0; }
