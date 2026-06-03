@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { CSSProperties } from "react";
 
 const ss3 = "'Source Sans 3', sans-serif";
 
@@ -41,77 +42,51 @@ export default function TestimonialsCarousel({ googleReviewsUrl }: { googleRevie
   const prev = () => setPage((p) => Math.max(0, p - 1));
   const next = () => setPage((p) => Math.min(PAGES.length - 1, p + 1));
 
+  const arrowStyle = (disabled: boolean): CSSProperties => ({
+    width: "40px",
+    height: "40px",
+    flexShrink: 0,
+    borderRadius: "50%",
+    border: "1px solid var(--border-strong)",
+    backgroundColor: disabled ? "transparent" : "var(--surface-2)",
+    color: disabled ? "var(--text-2)" : "var(--text)",
+    cursor: disabled ? "not-allowed" : "pointer",
+    fontSize: "18px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    opacity: disabled ? 0.35 : 1,
+    transition: "opacity 0.15s",
+  });
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "40px", width: "100%" }}>
 
-      {/* Header row */}
-      <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-            Testimonials
-          </p>
-          <a
-            href={googleReviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-hover"
-            style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent-text)", textDecoration: "none" }}
-          >
-            View our Google Reviews →
-          </a>
-        </div>
-
-        {/* Prev / Next arrows */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <button
-            onClick={prev}
-            disabled={page === 0}
-            aria-label="Previous reviews"
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              border: "1px solid var(--border-strong)",
-              backgroundColor: page === 0 ? "transparent" : "var(--surface-2)",
-              color: page === 0 ? "var(--text-2)" : "var(--text)",
-              cursor: page === 0 ? "not-allowed" : "pointer",
-              fontSize: "18px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              opacity: page === 0 ? 0.35 : 1,
-              transition: "opacity 0.15s",
-            }}
-          >
-            ←
-          </button>
-          <button
-            onClick={next}
-            disabled={page === PAGES.length - 1}
-            aria-label="Next reviews"
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              border: "1px solid var(--border-strong)",
-              backgroundColor: page === PAGES.length - 1 ? "transparent" : "var(--surface-2)",
-              color: page === PAGES.length - 1 ? "var(--text-2)" : "var(--text)",
-              cursor: page === PAGES.length - 1 ? "not-allowed" : "pointer",
-              fontSize: "18px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              opacity: page === PAGES.length - 1 ? 0.35 : 1,
-              transition: "opacity 0.15s",
-            }}
-          >
-            →
-          </button>
-        </div>
+      {/* Header row — title + Google link only */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
+          Testimonials
+        </p>
+        <a
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-hover"
+          style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", lineHeight: "22px", color: "var(--accent-text)", textDecoration: "none" }}
+        >
+          View our Google Reviews →
+        </a>
       </div>
 
-      {/* Cards */}
-      <div className="testimonials-row">
+      {/* Cards + flanking arrows */}
+      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+        {/* Prev arrow */}
+        <button onClick={prev} disabled={page === 0} aria-label="Previous reviews" style={arrowStyle(page === 0)}>
+          ←
+        </button>
+
+        {/* Cards */}
+        <div className="testimonials-row" style={{ flex: 1, minWidth: 0 }}>
         {PAGES[page].map((t) => (
           <div
             key={t.name}
@@ -142,6 +117,12 @@ export default function TestimonialsCarousel({ googleReviewsUrl }: { googleRevie
             </div>
           </div>
         ))}
+        </div>
+
+        {/* Next arrow */}
+        <button onClick={next} disabled={page === PAGES.length - 1} aria-label="Next reviews" style={arrowStyle(page === PAGES.length - 1)}>
+          →
+        </button>
       </div>
 
       {/* Dot indicators */}
