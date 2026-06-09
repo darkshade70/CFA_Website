@@ -16,12 +16,14 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
-            S.listItem().id("programs").title("Programs").child(S.documentTypeList("program").title("Programs")),
-            S.listItem().id("coaches").title("Coaches").child(S.documentTypeList("coach").title("Coaches")),
-            S.listItem().id("beginners").title("Beginners Page")
+            S.documentTypeListItem("program").title("Programs"),
+            S.documentTypeListItem("coach").title("Coaches"),
+            S.listItem()
+              .id("beginners")
+              .title("Beginners Page")
               .child(S.document().schemaType("beginners").documentId("beginners-singleton")),
-            S.listItem().id("testimonials").title("Testimonials").child(S.documentTypeList("testimonial").title("Testimonials")),
-            S.listItem().id("faqs").title("FAQs").child(S.documentTypeList("faq").title("FAQs")),
+            S.documentTypeListItem("testimonial").title("Testimonials"),
+            S.documentTypeListItem("faq").title("FAQs"),
           ]),
     }),
     visionTool(),
