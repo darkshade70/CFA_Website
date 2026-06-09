@@ -2,7 +2,12 @@ import { createClient } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import { sanityConfig } from "@/sanity/config";
 
-export const client = createClient(sanityConfig);
+// Revalidate Sanity data every 60 seconds on Vercel so published
+// changes appear on the live site within ~1 minute
+export const client = createClient({
+  ...sanityConfig,
+  fetchOptions: { next: { revalidate: 60 } },
+});
 
 const builder = createImageUrlBuilder(client);
 
