@@ -53,11 +53,10 @@ export const coachesQuery = `*[_type == "coach"] | order(order asc) {
   imgPos
 }`;
 
-export const testimonialsQuery = `*[_type == "testimonial"][0...6] {
+export const testimonialsQuery = `*[_type == "testimonial"] | order(_createdAt asc) {
   _id,
   quote,
   authorName,
-  authorDetail,
   rating,
   source
 }`;
@@ -66,6 +65,17 @@ export const faqsQuery = `*[_type == "faq"] | order(order asc) {
   _id,
   question,
   answer
+}`;
+
+export const ourSpaceQuery = `*[_type == "ourSpace" && _id == "our-space-singleton"][0] {
+  heroSubtitle,
+  stats[] { number, label },
+  facilityHeading,
+  facilityParagraph1,
+  facilityParagraph2,
+  locations[] { name, address, hours, directionsUrl, embedSrc },
+  ctaHeading,
+  ctaBody
 }`;
 
 export const beginnersQuery = `*[_type == "beginners" && _id == "beginners-singleton"][0] {

@@ -1,5 +1,8 @@
 import Link from "next/link";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import { client, testimonialsQuery } from "@/lib/sanity";
+
+export const revalidate = 60;
 
 // ── Local image assets (public/ directory) ───────────────────────────────────
 const STOCK = {
@@ -97,7 +100,14 @@ const FAQS = [
 // ── Shared style constants (from Figma tokens) ──────────────────────────────
 const ss3 = "'Source Sans 3', sans-serif";
 
-export default function HomePage() {
+export default async function HomePage() {
+  let testimonials: any[] = [];
+  try {
+    testimonials = await client.fetch(testimonialsQuery);
+  } catch (err) {
+    console.error("Sanity fetch failed for testimonials:", err);
+  }
+
   return (
     <>
       {/* ── NAV SPACER ─────────────────────────────────────────────────────── */}
@@ -465,7 +475,7 @@ export default function HomePage() {
           width: "100%",
         }}
       >
-        <TestimonialsCarousel googleReviewsUrl={GOOGLE_REVIEWS_URL} />
+        <TestimonialsCarousel googleReviewsUrl={GOOGLE_REVIEWS_URL} testimonials={testimonials} />
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}

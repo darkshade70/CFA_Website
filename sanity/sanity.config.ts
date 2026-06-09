@@ -22,6 +22,10 @@ export default defineConfig({
               .id("beginners")
               .title("Beginners Page")
               .child(S.document().schemaType("beginners").documentId("beginners-singleton")),
+            S.listItem()
+              .id("ourSpace")
+              .title("Our Space Page")
+              .child(S.document().schemaType("ourSpace").documentId("our-space-singleton")),
             S.documentTypeListItem("testimonial").title("Testimonials"),
             S.documentTypeListItem("faq").title("FAQs"),
           ]),

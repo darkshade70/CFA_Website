@@ -16,11 +16,6 @@ export const testimonial = {
       type: "string",
     },
     {
-      name: "authorDetail",
-      title: "Author Detail (e.g. '3 years at CFA')",
-      type: "string",
-    },
-    {
       name: "rating",
       title: "Star Rating",
       type: "number",
