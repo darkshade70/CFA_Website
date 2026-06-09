@@ -4,8 +4,6 @@ export const beginners = defineType({
   name: "beginners",
   title: "Beginners Page",
   type: "document",
-  // Singleton — only one document of this type should ever exist
-  __experimental_actions: ["update", "publish"],
   fields: [
     // ── Hero ──────────────────────────────────────────────────────────────
     defineField({
