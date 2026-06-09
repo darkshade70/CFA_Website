@@ -1,21 +1,19 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { client, urlFor, beginnersQuery } from "@/lib/sanity";
 
 export const metadata: Metadata = { title: "Start Fencing — Beginners" };
+export const revalidate = 60;
 
 const ss3 = "'Source Sans 3', sans-serif";
 
-const CLASSES = [
+// ── Hardcoded fallback ────────────────────────────────────────────────────────
+const FALLBACK_CLASSES = [
   {
     name: "Youth Beginners",
     age: "Ages 7–14",
     desc: "A structured 8-week intro built for kids with zero fencing experience. All gear is provided — just show up.",
-    features: [
-      "No experience required",
-      "All gear provided",
-      "Small coached groups",
-      "Free intro session",
-    ],
+    features: ["No experience required", "All gear provided", "Small coached groups", "Free intro session"],
     price: "$275",
     period: "8-week course",
     img: "/fencing5.webp",
@@ -24,37 +22,52 @@ const CLASSES = [
     name: "Adult Beginners",
     age: "Ages 14+",
     desc: "An 8-week course for first-time adult fencers. Whether you're 16 or 60, we start from zero and build from there.",
-    features: [
-      "No experience required",
-      "All gear provided",
-      "Learn at your own pace",
-      "Free intro session",
-    ],
+    features: ["No experience required", "All gear provided", "Learn at your own pace", "Free intro session"],
     price: "$275",
     period: "8-week course",
     img: "/fencing6.webp",
   },
 ];
 
-const EXPECT = [
-  {
-    n: "01",
-    heading: "No gear needed",
-    body: "We lend you a mask, jacket and blade for the whole 8-week course. Nothing to buy before you start.",
-  },
-  {
-    n: "02",
-    heading: "Small groups",
-    body: "Classes are kept small so coaches can give you real feedback from day one — not just watch from the side.",
-  },
-  {
-    n: "03",
-    heading: "8 weeks to sparring",
-    body: "By the end of the course you'll know the fundamentals and be ready to fence a real bout.",
-  },
+const FALLBACK_EXPECT = [
+  { heading: "No gear needed", body: "We lend you a mask, jacket and blade for the whole 8-week course. Nothing to buy before you start." },
+  { heading: "Small groups", body: "Classes are kept small so coaches can give you real feedback from day one — not just watch from the side." },
+  { heading: "8 weeks to sparring", body: "By the end of the course you'll know the fundamentals and be ready to fence a real bout." },
 ];
 
-export default function BeginnersPage() {
+export default async function BeginnersPage() {
+  // Try Sanity first
+  let data: any = null;
+  try {
+    data = await client.fetch(beginnersQuery);
+  } catch (err) {
+    console.error("Sanity fetch failed for beginners:", err);
+  }
+
+  // Resolve fields — Sanity or fallback
+  const heroSubtitle = data?.heroSubtitle ?? "No experience needed. No gear. No idea what weapon to pick. That's fine — we've got you.";
+  const introHeading = data?.introHeading ?? "Get started with fencing";
+  const introParagraph1 = data?.introParagraph1 ?? "Most people come in with no idea what foil, épée or sabre means — and that's exactly the right place to start. Our beginner courses introduce the fundamentals: footwork, blade control, and the basic rules of a bout. You pick a weapon later.";
+  const introParagraph2 = data?.introParagraph2 ?? "Both our youth and adult programs run in small groups across 8 weeks. By the end you'll know enough to keep going — or to decide it's not for you. Either is fine.";
+  const ctaHeading = data?.ctaHeading ?? "Not sure where to start?";
+  const ctaBody = data?.ctaBody ?? "Get in touch — a quick chat and we'll point you in the right direction. No pressure, no commitment.";
+
+  const expectItems = data?.expectItems?.length
+    ? data.expectItems
+    : FALLBACK_EXPECT;
+
+  const classes = data?.classes?.length
+    ? data.classes.map((cls: any, i: number) => ({
+        name: cls.name,
+        age: cls.age,
+        desc: cls.desc,
+        features: cls.features ?? [],
+        price: cls.price,
+        period: cls.period,
+        img: cls.image ? urlFor(cls.image).width(800).height(440).fit("crop").url() : FALLBACK_CLASSES[i % FALLBACK_CLASSES.length]?.img ?? "/fencing5.webp",
+      }))
+    : FALLBACK_CLASSES;
+
   return (
     <>
       <div className="nav-spacer" />
@@ -85,7 +98,7 @@ export default function BeginnersPage() {
             Beginners
           </p>
           <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "28px", color: "var(--text)", margin: 0 }}>
-            No experience needed. No gear. No idea what weapon to pick. That&apos;s fine — we&apos;ve got you.
+            {heroSubtitle}
           </p>
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
             <Link
@@ -112,14 +125,16 @@ export default function BeginnersPage() {
         style={{ backgroundColor: "var(--bg)", paddingTop: "80px", paddingBottom: "80px", width: "100%", display: "flex", flexDirection: "column", gap: "24px", maxWidth: "100%" }}
       >
         <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--text)", margin: 0 }}>
-          Get started with fencing
+          {introHeading}
         </p>
         <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "30px", color: "var(--text-2)", maxWidth: "680px", margin: 0 }}>
-          Most people come in with no idea what foil, épée or sabre means — and that&apos;s exactly the right place to start. Our beginner courses introduce the fundamentals: footwork, blade control, and the basic rules of a bout. You pick a weapon later.
+          {introParagraph1}
         </p>
-        <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "30px", color: "var(--text-2)", maxWidth: "680px", margin: 0 }}>
-          Both our youth and adult programs run in small groups across 8 weeks. By the end you&apos;ll know enough to keep going — or to decide it&apos;s not for you. Either is fine.
-        </p>
+        {introParagraph2 && (
+          <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "18px", lineHeight: "30px", color: "var(--text-2)", maxWidth: "680px", margin: 0 }}>
+            {introParagraph2}
+          </p>
+        )}
       </section>
 
       {/* ── WHAT TO EXPECT ── */}
@@ -128,10 +143,10 @@ export default function BeginnersPage() {
         style={{ backgroundColor: "var(--surface)", width: "100%", paddingTop: "64px", paddingBottom: "64px", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
       >
         <div className="beginners-expect-grid">
-          {EXPECT.map((e) => (
-            <div key={e.n} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+          {expectItems.map((e: any, i: number) => (
+            <div key={i} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
               <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "13px", lineHeight: "15px", letterSpacing: "0.84px", color: "var(--accent-text)", margin: 0 }}>
-                {e.n}
+                {String(i + 1).padStart(2, "0")}
               </p>
               <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "22px", lineHeight: "28px", color: "var(--text)", margin: 0 }}>
                 {e.heading}
@@ -160,7 +175,7 @@ export default function BeginnersPage() {
         </div>
 
         <div className="card-row">
-          {CLASSES.map((cls) => (
+          {classes.map((cls: any) => (
             <div
               key={cls.name}
               style={{
@@ -181,7 +196,6 @@ export default function BeginnersPage() {
 
               {/* Body */}
               <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "28px 28px 32px" }}>
-                {/* Top */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px", flex: 1 }}>
                   <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "28px", lineHeight: "34px", color: "var(--light-text)", margin: 0 }}>
                     {cls.name}
@@ -193,12 +207,10 @@ export default function BeginnersPage() {
                     {cls.desc}
                   </p>
 
-                  {/* Divider */}
                   <div style={{ height: "1px", backgroundColor: "var(--light-border)", margin: "8px 0" }} />
 
-                  {/* Features */}
                   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                    {cls.features.map((f) => (
+                    {cls.features.map((f: string) => (
                       <div key={f} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
                         <span style={{ color: "var(--accent)", fontWeight: 700, fontSize: "16px", lineHeight: "24px", flexShrink: 0 }}>✓</span>
                         <span style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "24px", color: "var(--light-text)" }}>{f}</span>
@@ -207,7 +219,6 @@ export default function BeginnersPage() {
                   </div>
                 </div>
 
-                {/* Bottom — pinned */}
                 <div style={{ marginTop: "28px", display: "flex", flexDirection: "column", gap: "14px" }}>
                   <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "22px", lineHeight: "28px", color: "var(--light-text)", margin: 0 }}>
                     {cls.price} <span style={{ fontWeight: 400, fontSize: "16px", color: "var(--light-text-2)" }}>· {cls.period}</span>
@@ -239,10 +250,10 @@ export default function BeginnersPage() {
         style={{ backgroundColor: "var(--accent)", display: "flex", flexDirection: "column", alignItems: "center", gap: "18px", width: "100%" }}
       >
         <p className="h-section" style={{ fontFamily: ss3, fontWeight: 700, color: "var(--on-accent)", textAlign: "center", margin: 0 }}>
-          Not sure where to start?
+          {ctaHeading}
         </p>
         <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "27px", color: "var(--on-accent)", textAlign: "center", maxWidth: "520px", margin: 0 }}>
-          Get in touch — a quick chat and we&apos;ll point you in the right direction. No pressure, no commitment.
+          {ctaBody}
         </p>
         <Link
           href="/visit"

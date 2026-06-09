@@ -67,3 +67,14 @@ export const faqsQuery = `*[_type == "faq"] | order(order asc) {
   question,
   answer
 }`;
+
+export const beginnersQuery = `*[_type == "beginners" && _id == "beginners-singleton"][0] {
+  heroSubtitle,
+  introHeading,
+  introParagraph1,
+  introParagraph2,
+  expectItems[] { heading, body },
+  classes[] { name, age, desc, features, price, period, image },
+  ctaHeading,
+  ctaBody
+}`;
