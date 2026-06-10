@@ -5,7 +5,6 @@ import ProgramCards from "@/components/ProgramCards";
 import { client, urlFor, programBySlugQuery } from "@/lib/sanity";
 
 // Re-fetch from Sanity every 60 seconds
-export const revalidate = 60;
 
 const ss3 = "'Source Sans 3', sans-serif";
 

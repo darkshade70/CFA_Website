@@ -4,7 +4,6 @@ import GalleryGrid from "@/components/GalleryGrid";
 import { client, ourSpaceQuery } from "@/lib/sanity";
 
 export const metadata: Metadata = { title: "Our Space" };
-export const revalidate = 60;
 
 const ss3 = "'Source Sans 3', sans-serif";
 

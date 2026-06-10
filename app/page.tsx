@@ -2,7 +2,6 @@ import Link from "next/link";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import { client, testimonialsQuery } from "@/lib/sanity";
 
-export const revalidate = 60;
 
 // ── Local image assets (public/ directory) ───────────────────────────────────
 const STOCK = {

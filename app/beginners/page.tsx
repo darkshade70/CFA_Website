@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { client, urlFor, beginnersQuery } from "@/lib/sanity";
 
 export const metadata: Metadata = { title: "Start Fencing — Beginners" };
-export const revalidate = 60;
 
 const ss3 = "'Source Sans 3', sans-serif";
 
