@@ -73,7 +73,7 @@ export const ourSpaceQuery = `*[_type == "ourSpace" && _id == "our-space-singlet
   facilityHeading,
   facilityParagraph1,
   facilityParagraph2,
-  locations[] { name, address, hours, directionsUrl, embedSrc },
+  locations[] { name, address, hours, directionsUrl },
   ctaHeading,
   ctaBody
 }`;

@@ -90,7 +90,6 @@ export const ourSpace = defineType({
             defineField({ name: "address", title: "Full address", type: "string", description: 'e.g. "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8"' }),
             defineField({ name: "hours",   title: "Hours", type: "string", description: 'e.g. "Open 7 days — evenings & weekends"' }),
             defineField({ name: "directionsUrl", title: "Google Maps directions URL", type: "url", description: "Paste the full Google Maps directions link" }),
-            defineField({ name: "embedSrc",      title: "Google Maps embed URL", type: "url", description: 'Go to Google Maps → Share → Embed a map → copy the src="..." URL' }),
           ],
         }),
       ],

@@ -355,7 +355,7 @@ body {
 .coach-card-home   { flex: 1 0 0; min-width: 0; }
 
 /* ── Testimonials ──────────────────────────────────────────────────────────── */
-.testimonials-row  { display: flex; gap: 24px; width: 100%; }
+.testimonials-row  { display: flex; gap: 24px; width: 100%; align-items: stretch; }
 .testimonial-card  { flex: 1 0 0; min-width: 0; }
 
 /* ── Coaches page grid ─────────────────────────────────────────────────────── */

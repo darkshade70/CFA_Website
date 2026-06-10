@@ -96,7 +96,7 @@ export default function TestimonialsCarousel({
         </button>
 
         {/* Cards */}
-        <div className="testimonials-row" style={{ flex: 1, minWidth: 0 }}>
+        <div className="testimonials-row" style={{ flex: 1, minWidth: 0, alignItems: "stretch" }}>
           {PAGES[page].map((t, i) => {
             const stars = t.rating ?? t.stars ?? 5;
             const name = t.authorName ?? t.name ?? "";
@@ -113,6 +113,7 @@ export default function TestimonialsCarousel({
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
+                  minHeight: "260px",
                 }}
               >
                 <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "16px", color: "var(--accent-text)", margin: 0 }}>
