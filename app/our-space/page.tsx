@@ -56,7 +56,9 @@ export default async function OurSpacePage() {
   const ctaHeading      = data?.ctaHeading ?? "Come see it for yourself.";
   const ctaBody         = data?.ctaBody    ?? "Book a free walk-through — we'll show you around, introduce you to the team, and help you find the right class.";
 
-  const stats = data?.stats?.length ? data.stats : FALLBACK_STATS;
+  const stats      = data?.stats?.length   ? data.stats   : FALLBACK_STATS;
+  const gallery    = data?.gallery?.length ? data.gallery : GALLERY;
+  const teamBanner = data?.teamBanner      ?? "/coaches-group.jpg";
 
   return (
     <>
@@ -124,7 +126,7 @@ export default async function OurSpacePage() {
       <div className="coaches-banner" style={{ width: "100%", overflow: "hidden", flexShrink: 0 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/coaches-group.jpg"
+          src={teamBanner}
           alt="The CFA coaching team"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" }}
         />
@@ -149,7 +151,7 @@ export default async function OurSpacePage() {
           </div>
         </div>
 
-        <GalleryGrid items={GALLERY} />
+        <GalleryGrid items={gallery} />
       </section>
 
       {/* ── TWO OAKVILLE LOCATIONS ── */}

@@ -9,6 +9,7 @@ export const ourSpace = defineType({
     { name: "hero",      title: "🖼  Hero" },
     { name: "stats",     title: "📊 Stats Strip" },
     { name: "facility",  title: "🏢 Facility Info" },
+    { name: "photos",    title: "📸 Photos" },
     { name: "locations", title: "📍 Locations" },
     { name: "cta",       title: "📣 CTA Banner" },
   ],
@@ -71,6 +72,38 @@ export const ourSpace = defineType({
       group: "facility",
       description: "📍 Right column paragraph about hours, gear, programs etc.",
       initialValue: "Open seven days across two Oakville locations. If you're new, all gear is provided — mask, jacket, gloves, weapon — nothing to buy before you try it. If you've been fencing for years, or want to compete, we run programs at every level. Some of our athletes train for nationals.",
+    }),
+
+    // ── 📸 PHOTOS ────────────────────────────────────────────────────────
+    defineField({
+      name: "teamBanner",
+      title: "Team banner photo",
+      type: "image",
+      group: "photos",
+      options: { hotspot: true },
+      description: "📍 The full-width photo of the coaching team shown between the stats strip and the facility text. Recommended: landscape, at least 1400px wide.",
+    }),
+    defineField({
+      name: "gallery",
+      title: "Photo gallery",
+      type: "array",
+      group: "photos",
+      description: "📍 The grid of gym photos shown below the facility text. Upload as many as you like — the grid adapts automatically. Each image should have an alt text description.",
+      of: [
+        defineArrayMember({
+          type: "image",
+          title: "Photo",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Alt text (describe the photo)",
+              type: "string",
+              description: 'e.g. "Fencers training on the pistes"',
+            }),
+          ],
+        }),
+      ],
     }),
 
     // ── 📍 LOCATIONS ─────────────────────────────────────────────────────

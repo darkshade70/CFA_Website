@@ -73,6 +73,11 @@ export const ourSpaceQuery = `*[_type == "ourSpace" && _id == "our-space-singlet
   facilityHeading,
   facilityParagraph1,
   facilityParagraph2,
+  "teamBanner": teamBanner.asset->url,
+  gallery[] {
+    "img": asset->url,
+    alt
+  },
   ctaHeading,
   ctaBody
 }`;
