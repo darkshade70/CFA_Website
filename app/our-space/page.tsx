@@ -15,7 +15,8 @@ const FALLBACK_STATS = [
   { number: "2",   label: "Oakville locations" },
 ];
 
-const FALLBACK_LOCATIONS = [
+// Locations are hardcoded — maps and addresses stay consistent regardless of Sanity
+const LOCATIONS = [
   {
     name: "Wyecroft Rd",
     address: "Unit 46 – 220 Wyecroft Rd, Oakville, ON  L6K 3T8",
@@ -56,8 +57,7 @@ export default async function OurSpacePage() {
   const ctaHeading      = data?.ctaHeading ?? "Come see it for yourself.";
   const ctaBody         = data?.ctaBody    ?? "Book a free walk-through — we'll show you around, introduce you to the team, and help you find the right class.";
 
-  const stats     = data?.stats?.length     ? data.stats     : FALLBACK_STATS;
-  const locations = data?.locations?.length ? data.locations : FALLBACK_LOCATIONS;
+  const stats = data?.stats?.length ? data.stats : FALLBACK_STATS;
 
   return (
     <>
@@ -162,33 +162,39 @@ export default async function OurSpacePage() {
           Two Oakville locations
         </p>
         <div className="card-row">
-          {locations.map((loc: any) => (
+          {LOCATIONS.map((loc) => (
             <div
               key={loc.name}
               style={{ flex: "1 0 0", minWidth: 0, backgroundColor: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: "12px", overflow: "hidden", display: "flex", flexDirection: "column" }}
             >
-              {/* Map pin header */}
-              <div style={{ backgroundColor: "var(--surface-3, #2a2520)", padding: "32px 28px", display: "flex", alignItems: "center", gap: "14px", borderBottom: "1px solid var(--border)" }}>
-                <div style={{ width: "44px", height: "44px", borderRadius: "50%", backgroundColor: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "20px" }}>
-                  📍
-                </div>
-                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "22px", lineHeight: "28px", color: "var(--text)", margin: 0 }}>{loc.name}</p>
+              {/* Interactive Google Map */}
+              <div style={{ height: "260px", flexShrink: 0, overflow: "hidden" }}>
+                <iframe
+                  src={loc.embedSrc}
+                  width="100%"
+                  height="260"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={loc.name}
+                />
               </div>
 
               {/* Info body */}
-              <div style={{ padding: "24px 28px 28px", display: "flex", flexDirection: "column", gap: "8px", flexGrow: 1 }}>
-                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "17px", lineHeight: "26px", color: "var(--text-2)", margin: 0 }}>{loc.address}</p>
+              <div style={{ padding: "22px 24px 24px", display: "flex", flexDirection: "column", gap: "6px" }}>
+                <p style={{ fontFamily: ss3, fontWeight: 700, fontSize: "22px", lineHeight: "28px", color: "var(--text)", margin: 0 }}>{loc.name}</p>
+                <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "16px", lineHeight: "26px", color: "var(--text-2)", margin: 0 }}>{loc.address}</p>
                 <p style={{ fontFamily: ss3, fontWeight: 400, fontSize: "14px", lineHeight: "20px", color: "var(--text-2)", margin: 0, opacity: 0.75 }}>{loc.hours}</p>
-                <div style={{ marginTop: "16px" }}>
-                  <a
-                    href={loc.directionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "20px", color: "var(--on-accent)", backgroundColor: "var(--accent)", padding: "12px 22px", borderRadius: "8px", textDecoration: "none" }}
-                  >
-                    Get directions →
-                  </a>
-                </div>
+                <a
+                  href={loc.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-hover"
+                  style={{ fontFamily: ss3, fontWeight: 700, fontSize: "15px", lineHeight: "22px", color: "var(--accent-text)", textDecoration: "none", marginTop: "8px" }}
+                >
+                  Get directions →
+                </a>
               </div>
             </div>
           ))}
